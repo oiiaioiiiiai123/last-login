@@ -1,0 +1,124 @@
+{
+  "version": 1,
+  "elapsed": 120,
+  "phase": 3,
+  "started": true,
+  "firstVerifiedDestination": null,
+  "evidence": {
+    "messages/maya@1": {
+      "id": "messages/maya@1",
+      "destination": "Morrow",
+      "weight": 3,
+      "at": 0,
+      "source": "messages/maya"
+    }
+  },
+  "viewedFileVersions": [
+    "messages/maya@1",
+    "notes/strange-station@1",
+    "files/return-ticket@2"
+  ],
+  "searches": [
+    "morrow"
+  ],
+  "morrowSearchStage": 2,
+  "morrowSearchCount": 2,
+  "changedSources": [
+    "messages",
+    "notes"
+  ],
+  "morrowConfirmed": true,
+  "hasReadChangedMessages": true,
+  "hasInspectedTicket": false,
+  "ticketDestination": "Morrow",
+  "ticketVisible": false,
+  "currentRoute": "Morrow",
+  "noteVersion": 2,
+  "messageVersion": 2,
+  "photoVersions": {
+    "station": 1
+  },
+  "trainSceneState": "morrow",
+  "revisions": [
+    {
+      "at": 0,
+      "target": "browser/morrow",
+      "from": "0",
+      "to": "1",
+      "reason": "玩家主动提交Morrow搜索"
+    },
+    {
+      "at": 0,
+      "target": "browser/morrow",
+      "from": "1",
+      "to": "2",
+      "reason": "玩家主动提交Morrow搜索"
+    },
+    {
+      "at": 0,
+      "target": "messages/maya/travel",
+      "from": "0",
+      "to": "1",
+      "reason": "首次无结果检索之后，历史旅行对话改写"
+    },
+    {
+      "at": 0,
+      "target": "notes/strange-station",
+      "from": "0",
+      "to": "1",
+      "reason": "再次搜索后旅行记录发生变化"
+    },
+    {
+      "at": 0,
+      "target": "photos/station-platform",
+      "from": "0",
+      "to": "1",
+      "reason": "车站资料已建立"
+    },
+    {
+      "at": 0,
+      "target": "journey/confirmation",
+      "from": "Larkfield",
+      "to": "Morrow",
+      "reason": "阅读两类改写后重新查看Ivy车票"
+    },
+    {
+      "at": 0,
+      "target": "messages/maya/travel",
+      "from": "1",
+      "to": "2",
+      "reason": "首次无结果检索之后，历史旅行对话改写"
+    },
+    {
+      "at": 0,
+      "target": "train/route",
+      "from": "Larkfield",
+      "to": "Morrow",
+      "reason": "旅行资料与车票确认状态变化"
+    },
+    {
+      "at": 0,
+      "target": "notes/strange-station",
+      "from": "1",
+      "to": "2",
+      "reason": "再次搜索后旅行记录发生变化"
+    },
+    {
+      "at": 0,
+      "target": "paper/ticket",
+      "from": "Larkfield",
+      "to": "Morrow",
+      "reason": "纸票离开视野后与当前线路一致"
+    }
+  ],
+  "ending": null,
+  "endingStep": 0,
+  "completed": [],
+  "lastApp": null,
+  "observations": [
+    "search-changed"
+  ],
+  "thoughtQueue": [
+    "search-changed"
+  ]
+}

@@ -1,0 +1,596 @@
+{
+  "version": 1,
+  "scope": "Only src/assets is the production registry; art/ is editable source; docs/review and .cache are never runtime assets. Exact path inventory is intentional.",
+  "assets": {
+    "audio/larkfield-arrival.wav": {
+      "kind": "wav",
+      "usage": "runtime",
+      "sha256": "4df936164f6a1d3dc9192d9a4d499f620d74e04504ddbab6af13af94fbe6fc97"
+    },
+    "audio/morrow-arrival.wav": {
+      "kind": "wav",
+      "usage": "runtime",
+      "sha256": "66741e0109f414a641fab3e0b4050fda003bf2ccb90222e9ac2405538cb9ac90"
+    },
+    "emoji/1f602.svg": {
+      "kind": "svg",
+      "usage": "runtime",
+      "sha256": "b553c8c7d447edbd684c436bdf49208ab142f3fc7004eb98fbe8ab6dc68451ab"
+    },
+    "emoji/1f621.svg": {
+      "kind": "svg",
+      "usage": "runtime",
+      "sha256": "1646eb245c45d4159fade1bf05d43246f632dc6976f8ce0ddedf11f7b2cc97e9"
+    },
+    "emoji/1f62d.svg": {
+      "kind": "svg",
+      "usage": "runtime",
+      "sha256": "b8b0845817217b19602544b7f5d0a681fd29f5d15564540de442c49e963f57c7"
+    },
+    "emoji/1f970.svg": {
+      "kind": "svg",
+      "usage": "runtime",
+      "sha256": "ea04061b31c3fc1bd188b43061d4d07213863f4e1659175c4a5d2c7357bc478e"
+    },
+    "emoji/1f979.svg": {
+      "kind": "svg",
+      "usage": "runtime",
+      "sha256": "60efb0d44b9026a682d14b37414eaf4f86b4ad99c23e93d93d9f4d7b7baeae45"
+    },
+    "emoji/2764.svg": {
+      "kind": "svg",
+      "usage": "runtime",
+      "sha256": "280a633e0e72c7f45a0bdbc819d55d3de71dc47439d3024a0b9d3d7c76642023"
+    },
+    "endings/backpack.png": {
+      "kind": "png",
+      "usage": "runtime",
+      "size": [
+        320,
+        200
+      ],
+      "mode": "RGBA",
+      "sha256": "d602d266d55c9a1c2ae7215f856c8738c051c241371dd52b8e03b83838e457b4"
+    },
+    "endings/missing-ivy.png": {
+      "kind": "png",
+      "usage": "runtime",
+      "size": [
+        320,
+        200
+      ],
+      "mode": "RGBA",
+      "sha256": "419bdb6f8c7c6ea2be8ba1af719196bbdfd0568a1df97aec6d7ca2eeda47c07a"
+    },
+    "endings/reveal-clothes.png": {
+      "kind": "png",
+      "usage": "runtime",
+      "size": [
+        376,
+        426
+      ],
+      "mode": "RGBA",
+      "sha256": "c06b7560a94011d3f74c0e2295c8bc65917836561b5eb4b2d1f9dccfecd53789"
+    },
+    "endings/reveal-face.png": {
+      "kind": "png",
+      "usage": "runtime",
+      "size": [
+        376,
+        426
+      ],
+      "mode": "RGBA",
+      "sha256": "22f0623c1a72891ea7b00bae0d2cfe7bd0fc55aed5c5936babe4ef4131b1d9a3"
+    },
+    "endings/reveal-outline.png": {
+      "kind": "png",
+      "usage": "runtime",
+      "size": [
+        376,
+        426
+      ],
+      "mode": "RGBA",
+      "sha256": "9d6cf66f5f06d869f22db45bb02ec6c0a0f8651dff669040d583ea54f84c0e22"
+    },
+    "endings/station-larkfield.png": {
+      "kind": "png",
+      "usage": "runtime",
+      "size": [
+        320,
+        200
+      ],
+      "mode": "RGB",
+      "sha256": "c9cd28d24a305abe5e14920a52f4a451285999886eb03f2a021b74fa022f7679"
+    },
+    "endings/station-morrow.png": {
+      "kind": "png",
+      "usage": "runtime",
+      "size": [
+        320,
+        200
+      ],
+      "mode": "RGB",
+      "sha256": "159b1bdaf761b11523cc27b07e2cee75c02df5afd72f033b169e73d63574f8c3"
+    },
+    "endings/train-selfie-nora.png": {
+      "kind": "png",
+      "usage": "runtime",
+      "size": [
+        376,
+        426
+      ],
+      "mode": "RGB",
+      "sha256": "734d9d9e7d294435b49647e87684d414d435ad7ea064829b76836ba4e6071553"
+    },
+    "fonts/fusion-pixel-10px-zh-hans.woff2": {
+      "kind": "woff2",
+      "usage": "runtime",
+      "sha256": "f6bed9cb4c8849b5300ffdf3f8598e1c0d09fc014aa85792c249504a4281a77c"
+    },
+    "fonts/fusion-pixel-12px-zh-hans.woff2": {
+      "kind": "woff2",
+      "usage": "runtime",
+      "sha256": "7cdaf516e63dbcb7b190b3d0606bdd5d451ef51593d6d3d934d30ba086e88b6d"
+    },
+    "fonts/fusion-pixel-8px-zh-hans.woff2": {
+      "kind": "woff2",
+      "usage": "runtime",
+      "sha256": "396bc931a62f9a02881f327ebdc85aecd10bb2213d2860eeeb8ebd9d6acab19c"
+    },
+    "icons/blue-bird.png": {
+      "kind": "png",
+      "usage": "runtime",
+      "size": [
+        48,
+        48
+      ],
+      "mode": "RGBA",
+      "sha256": "0d55b0428b991aeaac1a981c9388080d1306da75973e2108969b580ecf53380e"
+    },
+    "icons/browser.png": {
+      "kind": "png",
+      "usage": "runtime",
+      "size": [
+        48,
+        48
+      ],
+      "mode": "RGBA",
+      "sha256": "47fc426cf4ee993389276a416ae87f113b329dbde961dc3e8b32afd003021542"
+    },
+    "icons/files.png": {
+      "kind": "png",
+      "usage": "runtime",
+      "size": [
+        48,
+        48
+      ],
+      "mode": "RGBA",
+      "sha256": "b07c8b85f8c10e3b7092f2bcf685833c2d89a6d323c7f3e87768db6dd8931355"
+    },
+    "icons/messages.png": {
+      "kind": "png",
+      "usage": "runtime",
+      "size": [
+        48,
+        48
+      ],
+      "mode": "RGBA",
+      "sha256": "0ed6ed879bf37ce970271aaebc4d1b5ea469f6267aac16178ab4433993fa9d28"
+    },
+    "icons/notes.png": {
+      "kind": "png",
+      "usage": "runtime",
+      "size": [
+        48,
+        48
+      ],
+      "mode": "RGBA",
+      "sha256": "c7d00c16461e32cac235a3272889f0b22e1c43a62d6884c9904e6114eec22807"
+    },
+    "icons/photos.png": {
+      "kind": "png",
+      "usage": "runtime",
+      "size": [
+        48,
+        48
+      ],
+      "mode": "RGBA",
+      "sha256": "f4d0e5ddb33a94c31a62690e5788badfc7dde1bb99dcf46c4150cfa8e1e1f432"
+    },
+    "photos/birthday-cake.png": {
+      "kind": "png",
+      "usage": "runtime",
+      "size": [
+        320,
+        200
+      ],
+      "mode": "RGB",
+      "sha256": "a0cad5f312979bfb4a5dafbdcc2e6fd503343ab1c89422b32b13d48fde2d4f2e"
+    },
+    "photos/bookshop.png": {
+      "kind": "png",
+      "usage": "runtime",
+      "size": [
+        320,
+        200
+      ],
+      "mode": "RGB",
+      "sha256": "1ee796d79c2fbfecc5c343016096f145317a29252e71edc11ee51bc5812c4230"
+    },
+    "photos/breakfast.png": {
+      "kind": "png",
+      "usage": "runtime",
+      "size": [
+        320,
+        200
+      ],
+      "mode": "RGB",
+      "sha256": "db3718392cbb89dd0293e91c66326fb12185cb33293f25b2ad9d9016d1e3d185"
+    },
+    "photos/coffee-shop.png": {
+      "kind": "png",
+      "usage": "runtime",
+      "size": [
+        320,
+        200
+      ],
+      "mode": "RGB",
+      "sha256": "7f79aacb2548dd0c4ea68fb8a37d898be523f6993a8a7250c6ac10662f8e11e2"
+    },
+    "photos/desk-evening.png": {
+      "kind": "png",
+      "usage": "runtime",
+      "size": [
+        320,
+        200
+      ],
+      "mode": "RGB",
+      "sha256": "e64b693a8c29d78ff67fafbba5f7d93654264c62ba18adfbd66252297a54b0b5"
+    },
+    "photos/favorite-mug.png": {
+      "kind": "png",
+      "usage": "runtime",
+      "size": [
+        320,
+        200
+      ],
+      "mode": "RGB",
+      "sha256": "dea9a33125b49b936ce039fe4ed3b88fabeaf464da6890ccbf85c771ce6ddf37"
+    },
+    "photos/ivy-maya.png": {
+      "kind": "png",
+      "usage": "runtime",
+      "size": [
+        320,
+        200
+      ],
+      "mode": "RGB",
+      "sha256": "bc304b0f30c9e625539d2fbe37d6fe0b0a3da51916e94d4f9ec28b2a30f56803"
+    },
+    "photos/little-blue-bird.png": {
+      "kind": "png",
+      "usage": "runtime",
+      "size": [
+        320,
+        200
+      ],
+      "mode": "RGB",
+      "sha256": "26c0edbbe4709239ef437752cd415bd49e580a6f6d7c6711dde36f96ce6971a4"
+    },
+    "photos/maya-photo.png": {
+      "kind": "png",
+      "usage": "runtime",
+      "size": [
+        320,
+        200
+      ],
+      "mode": "RGB",
+      "sha256": "5c063845fb5c69301a091d6aea4c5e1b87297a8d39577e92032588604c99c51c"
+    },
+    "photos/mirror-morning.png": {
+      "kind": "png",
+      "usage": "runtime",
+      "size": [
+        320,
+        200
+      ],
+      "mode": "RGB",
+      "sha256": "270ed07c16c4d1b26aaf24b5b8448152074d78ce91c2eb5b75727a960d47e3df"
+    },
+    "photos/neighborhood-cat.png": {
+      "kind": "png",
+      "usage": "runtime",
+      "size": [
+        320,
+        200
+      ],
+      "mode": "RGB",
+      "sha256": "7d2e3cfff5031be0d8cbe0032b6bfdedd5a84b2470ae3246ecb064bcfd083aa3"
+    },
+    "photos/night-walk.png": {
+      "kind": "png",
+      "usage": "runtime",
+      "size": [
+        320,
+        200
+      ],
+      "mode": "RGB",
+      "sha256": "092707169aa2d6076e2a3cc4ff399215fb339176c4e5084df5a1546b2f6d1028"
+    },
+    "photos/picnic.png": {
+      "kind": "png",
+      "usage": "runtime",
+      "size": [
+        320,
+        200
+      ],
+      "mode": "RGB",
+      "sha256": "a2b276c08d6432655277ecb60b125892fdfc762b372d908c078093759a6f2512"
+    },
+    "photos/rainy-window.png": {
+      "kind": "png",
+      "usage": "runtime",
+      "size": [
+        320,
+        200
+      ],
+      "mode": "RGB",
+      "sha256": "3e6d5cce2b7e73fdaab55f4109cb60b444945f7c4e8b8db6d547b8271fd8358a"
+    },
+    "photos/station-platform.png": {
+      "kind": "png",
+      "usage": "runtime",
+      "size": [
+        320,
+        200
+      ],
+      "mode": "RGB",
+      "sha256": "e9a4a1a8a8a4af6320b1a85affe87a27951c53b9aeb905699f06278a4d9389a0"
+    },
+    "photos/train-selfie.png": {
+      "kind": "png",
+      "usage": "runtime",
+      "size": [
+        376,
+        426
+      ],
+      "mode": "RGB",
+      "sha256": "3ecf623117ebbc7d83979461fe1764160f61e79bd548744974c5374fdb36e7aa"
+    },
+    "photos/train-window.png": {
+      "kind": "png",
+      "usage": "runtime",
+      "size": [
+        320,
+        200
+      ],
+      "mode": "RGB",
+      "sha256": "c35504b2bb632c568f4c5b0afe15aa7095d6efad186f5c840143ba00ea8be03e"
+    },
+    "photos/weekend-lake.png": {
+      "kind": "png",
+      "usage": "runtime",
+      "size": [
+        320,
+        200
+      ],
+      "mode": "RGB",
+      "sha256": "21469587a411b4cdd8683456113b011c3c0c692190ccf0908db2fcd75c350feb"
+    },
+    "portraits/ivy-missing.png": {
+      "kind": "png",
+      "usage": "runtime",
+      "size": [
+        80,
+        80
+      ],
+      "mode": "RGB",
+      "sha256": "698d220273b3459e2427b17cf8a6b6f7ec59d6f56ca34859853e99d385779de4"
+    },
+    "portraits/ivy.png": {
+      "kind": "png",
+      "usage": "runtime",
+      "size": [
+        80,
+        80
+      ],
+      "mode": "RGB",
+      "sha256": "698d220273b3459e2427b17cf8a6b6f7ec59d6f56ca34859853e99d385779de4"
+    },
+    "portraits/maya.png": {
+      "kind": "png",
+      "usage": "runtime",
+      "size": [
+        80,
+        80
+      ],
+      "mode": "RGB",
+      "sha256": "6a9641d64ea7c1da3a36f0e4d9cb27c3d6807f464d2071852b83894b71718913"
+    },
+    "portraits/nora.png": {
+      "kind": "png",
+      "usage": "preloaded-only",
+      "size": [
+        80,
+        80
+      ],
+      "mode": "RGB",
+      "sha256": "d5aec0adfd9c678513dac2d9eb90ede89582f414421969d4afd869defb5ad157"
+    },
+    "scenery/lake.png": {
+      "kind": "png",
+      "usage": "runtime",
+      "size": [
+        280,
+        50
+      ],
+      "mode": "RGBA",
+      "sha256": "c329d45009b4c36f6fdba1dce65463b7bc45d5ad69f15a6f2db7b8b7a3f60dec"
+    },
+    "scenery/moon.png": {
+      "kind": "png",
+      "usage": "runtime",
+      "size": [
+        25,
+        28
+      ],
+      "mode": "RGBA",
+      "sha256": "afb0de80e24bad0e8c16421553ab707e53ee39d1adf62b7bb40567e9398fa0c9"
+    },
+    "scenery/mountains.png": {
+      "kind": "png",
+      "usage": "runtime",
+      "size": [
+        280,
+        50
+      ],
+      "mode": "RGBA",
+      "sha256": "15b309d2f1a35efe3b7c6f2bbe126acc245b10cffa945740f1c3cb3175788105"
+    },
+    "scenery/night-sky.png": {
+      "kind": "png",
+      "usage": "runtime",
+      "size": [
+        140,
+        74
+      ],
+      "mode": "RGBA",
+      "sha256": "e519a2df126f6a3a8aa1a9ebe1392fddcb63ff2b688973150b018c2d38d1844d"
+    },
+    "scenery/village.png": {
+      "kind": "png",
+      "usage": "runtime",
+      "size": [
+        280,
+        77
+      ],
+      "mode": "RGBA",
+      "sha256": "8b166faa8ed0fa3893a4fc618cd92381d09287c9c1c4b26a1abac6e9d9f9f85b"
+    },
+    "scenes/train-closed.png": {
+      "kind": "png",
+      "usage": "runtime",
+      "size": [
+        640,
+        360
+      ],
+      "mode": "RGB",
+      "sha256": "5b8a1adbeaff29e6a6c2a1dbe21dad28be54cd821fa0eb92ad435147a0053d61"
+    },
+    "scenes/train-forward.png": {
+      "kind": "png",
+      "usage": "runtime",
+      "size": [
+        640,
+        360
+      ],
+      "mode": "RGB",
+      "sha256": "3e87b98f225df08af450780ecf5eda1b49a1c96c60b41b22cd23729ce26a084e"
+    },
+    "scenes/train-intro-cabin.png": {
+      "kind": "png",
+      "usage": "runtime",
+      "size": [
+        640,
+        360
+      ],
+      "mode": "RGB",
+      "sha256": "62ad53549150ceec7f96b6eb1faffcbdc10f80e2e21332b3b40f3384e5158e8d"
+    },
+    "scenes/train-left-closed.png": {
+      "kind": "png",
+      "usage": "runtime",
+      "size": [
+        640,
+        360
+      ],
+      "mode": "RGB",
+      "sha256": "3a8b9de9b094597605a38392d705162c147e72a7c8dac886f2ab0eb56355b413"
+    },
+    "scenes/train-left.png": {
+      "kind": "png",
+      "usage": "runtime",
+      "size": [
+        640,
+        360
+      ],
+      "mode": "RGB",
+      "sha256": "d89bd4c69967b926f15c9f83d9428e98c105ca3b2666bc58b822689722249407"
+    },
+    "scenes/train-menu-lake.png": {
+      "kind": "png",
+      "usage": "runtime",
+      "size": [
+        640,
+        360
+      ],
+      "mode": "RGB",
+      "sha256": "83dda395fd52b2b2be3f1484eb1f79dfcaa83979bc5e782a2efb4b5816ba2372"
+    },
+    "scenes/train-menu.png": {
+      "kind": "png",
+      "usage": "preloaded-only",
+      "size": [
+        640,
+        360
+      ],
+      "mode": "RGB",
+      "sha256": "d6873e630e2b86124f8f947cb4d36cba851851b55d35c9e26efe42470e20a214"
+    },
+    "scenes/train-opening.png": {
+      "kind": "png",
+      "usage": "preloaded-only",
+      "size": [
+        640,
+        360
+      ],
+      "mode": "RGB",
+      "sha256": "35d4d451cc9eec94986f186b093f418d616bd710fd2ed44a70f4c36a30691d46"
+    },
+    "sprites/nora-seated.png": {
+      "kind": "png",
+      "usage": "preloaded-only",
+      "size": [
+        112,
+        150
+      ],
+      "mode": "RGBA",
+      "sha256": "e66906ffdc228d91fe8ceddf0503cdc7d8a0cc13ee1f6221f5bbbcdd11c1b485"
+    },
+    "sprites/nora-standing.png": {
+      "kind": "png",
+      "usage": "preloaded-only",
+      "size": [
+        88,
+        170
+      ],
+      "mode": "RGBA",
+      "sha256": "1a11950355a89ba8c02c40a63e41bd70ed3ada1281d6e0c90aab041b9be54518"
+    }
+  },
+  "morrow": {
+    "base": "photos/train-selfie.png",
+    "final": "endings/train-selfie-nora.png",
+    "outline": "endings/reveal-outline.png",
+    "clothes": "endings/reveal-clothes.png",
+    "face": "endings/reveal-face.png",
+    "source_layer": "art/morrow-selfie/nora-a-light.png",
+    "ivy_mask": "art/morrow-selfie/ivy-protection-mask.png",
+    "original_selfie": "art/morrow-selfie/ivy-original-320.png",
+    "size": [
+      376,
+      426
+    ],
+    "minimum_nora_x": 175,
+    "face_boundary_y": 265,
+    "approved_selection": "A / LIGHT",
+    "approved_layer_sha256": "431a7a2f62e920ff0f37e77ec31eb30219f34ba6870dfa39c5442ce5c69d547d",
+    "approved_final_sha256": "734d9d9e7d294435b49647e87684d414d435ad7ea064829b76836ba4e6071553",
+    "approved_alpha_sha256": "ea1c28cb3d9381979316b3f1c78a73bda6ad371fc36f2ad0391d930b6d5a42e9",
+    "approved_layer_pixels_sha256": "0e846ddcbb6d8d6ab8ea72f4dae4d70fba59d6415741793a285a6c270f7af663"
+  },
+  "ivy_master": {
+    "path": "art/character-style-reference/ivy-80.png",
+    "sha256": "698d220273b3459e2427b17cf8a6b6f7ec59d6f56ca34859853e99d385779de4"
+  }
+}

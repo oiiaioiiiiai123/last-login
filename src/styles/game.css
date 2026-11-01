@@ -1,0 +1,625 @@
+@font-face{font-family:"Fusion Pixel";src:url('../assets/fonts/fusion-pixel-10px-zh-hans.woff2') format('woff2');font-weight:100 900;font-style:normal;font-display:block}
+@font-face{font-family:"Fusion Display";src:url('../assets/fonts/fusion-pixel-12px-zh-hans.woff2') format('woff2');font-weight:100 900;font-style:normal;font-display:block}
+@font-face{font-family:"Fusion Small";src:url('../assets/fonts/fusion-pixel-8px-zh-hans.woff2') format('woff2');font-weight:100 900;font-style:normal;font-display:block}
+:root{font-family:"Fusion Pixel",monospace;color:#e5dec8;background:#121621;font-synthesis:none;font-size:20px;font-family:"Fusion Pixel";--ink:#303f46;--cream:#eee9d9;--teal:#496b69;--gold:#e1bb78;--line:#b0b5a5}
+*{box-sizing:border-box}
+body{margin:0;overflow:hidden}
+button,input{font:inherit}
+button{cursor:pointer}
+button:disabled{cursor:default;opacity:.4}
+button{color:inherit}
+button:focus-visible,input:focus-visible,[tabindex]:focus-visible{outline:2px solid #dca965;outline-offset:3px}
+button{touch-action:manipulation}
+img{image-rendering:pixelated}
+button img{pointer-events:none}
+h1,h2,h3,p{margin-top:0}
+button,input{-webkit-tap-highlight-color:transparent}
+.game{width:100vw;height:100dvh;min-height:420px;position:relative;overflow:hidden;isolation:isolate;background:#151b29}
+.train-canvas{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;image-rendering:pixelated;cursor:default}
+.scene-vignette{position:absolute;inset:0;background:radial-gradient(ellipse at 43% 44%,transparent 32%,#11121b65 100%);pointer-events:none}
+.eyebrow{font:16px/1.5 "Fusion Small";letter-spacing:2px;text-transform:uppercase}
+.prewrap{white-space:pre-wrap}
+.main-menu{position:absolute;inset:0;background:linear-gradient(90deg,#121722ed 0%,#121722a6 43%,#1217225e 74%,#12172288),linear-gradient(0deg,#111621dd,transparent 40%);padding:30px 7vw;display:flex;align-items:center;justify-content:space-between}
+.menu-topline,.menu-bottom{position:absolute;left:7vw;right:7vw;display:flex;justify-content:space-between;font:16px/1.4 "Fusion Small";letter-spacing:3px;color:#c6baa2}
+.menu-topline{top:30px}
+.menu-topline span:last-child{color:#9b9b98}
+.menu-bottom{bottom:29px;letter-spacing:1px;font-size:16px;font-family:"Fusion Small"}
+.menu-title{max-width:60%}
+.menu-title>img{width:54px;height:54px;object-fit:contain;margin:0 0 14px -5px;filter:drop-shadow(3px 3px 0 #0004)}
+.menu-title .eyebrow{color:#a7b5ad;font-size:16px;font-family:"Fusion Small";letter-spacing:3px;margin-bottom:18px}
+.menu-title h1{font:700 70px/1.4 "Fusion Pixel";letter-spacing:0;margin:0;color:#f0e2bc;position:relative;text-shadow:4px 4px 0 #6c5d5144}
+.menu-title h1 span{color:#deb87a}
+.menu-title h1 i{display:inline-block;width:17px;height:15px;background:#deb87a;margin-left:20px;animation:cursor 3s steps(1) infinite}
+.menu-subtitle{font:16px/1.5 "Fusion Small";letter-spacing:2px;margin:24px 0;color:#c4b9a0}
+.menu-rule{width:44px;height:2px;background:#8b775a;margin:24px 0}
+.menu-tagline{font-size:20px;font-family:"Fusion Pixel";letter-spacing:1.2px;color:#a9a8a4;line-height:2}
+.menu-options{width:270px;margin:130px 0 0 30px}
+.menu-options button{width:100%;border:0;border-top:1px solid #c4b59238;background:transparent;text-align:left;padding:17px 5px;font:24px/1.4 "Fusion Display";position:relative;transition:color .2s,background .2s,transform .2s}
+.menu-options button:last-child{border-bottom:1px solid #c4b59238}
+.menu-options button:hover:not(:disabled){color:#ffe0a1;transform:translateX(4px);background:#dbbd7a0a}
+.menu-options button span{font-size:16px;font-family:"Fusion Small";color:#8b968d;margin-right:22px;vertical-align:middle}
+.menu-options button i{font-style:normal;font-size:16px;font-family:"Fusion Small";display:block;margin:7px 0 0 39px;color:#a6a798;letter-spacing:2px}
+.computer-position{position:absolute;left:50%;top:49%;width:min(1040px,85vw);height:min(690px,85vh);transform:translate(-50%,-50%);transition:transform .65s cubic-bezier(.2,.8,.2,1),opacity .45s;transform-origin:50% 77%}
+.looking-up .computer-position{transform:translate(-50%,-50%);opacity:0;pointer-events:none;transition:opacity .14s ease}
+.laptop-shell{width:100%;height:100%;background:#576264;border:3px solid #1b2732;border-radius:12px 12px 5px 5px;box-shadow:0 0 0 2px #7f8981,5px 10px 0 #16222d80,0 16px 48px #0b101680;display:flex;flex-direction:column;padding:0 12px}
+.bezel-top{height:24px;flex:none;display:flex;align-items:center;justify-content:center;position:relative;color:#b1bbb0;font:16px/1.4 "Fusion Small";letter-spacing:2px}
+.bezel-top>span:last-child{position:absolute;right:3px}
+.camera-dot{width:4px;height:4px;background:#1f3038;border:1px solid #a1aea0;border-radius:50%}
+.bezel-bottom{height:23px;display:flex;align-items:center;justify-content:center;position:relative;flex:none;color:#c0c8b5;letter-spacing:5px;font:16px/1.4 "Fusion Small"}
+.bezel-bottom i{position:absolute;right:5px;width:4px;height:3px;background:#d6d18c;box-shadow:0 0 7px #e1d299}
+.desktop-screen{flex:1;min-height:0;position:relative;overflow:hidden;background:#60877c;border:3px solid #233439;color:var(--ink);box-shadow:inset 1px 1px 3px #0005}
+.desktop-wallpaper{position:absolute;inset:0 0 32px;background:linear-gradient(#a2b7a3 0 25%,#8ea89a 25% 48%,#71988d 48% 65%,#547c75 65%);overflow:hidden}
+.wallpaper-sun{position:absolute;width:85px;height:85px;top:18%;right:26%;background:#e5d5a3;clip-path:polygon(22% 0,78% 0,78% 8%,92% 8%,92% 22%,100% 22%,100% 78%,92% 78%,92% 92%,78% 92%,78% 100%,22% 100%,22% 92%,8% 92%,8% 78%,0 78%,0 22%,8% 22%,8% 8%,22% 8%)}
+.mountain{position:absolute;bottom:0;width:120%;height:72%;clip-path:polygon(0 60%,5% 60%,5% 54%,10% 54%,10% 45%,16% 45%,16% 33%,22% 33%,22% 23%,26% 23%,26% 32%,33% 32%,33% 45%,40% 45%,40% 52%,47% 52%,47% 40%,53% 40%,53% 28%,58% 28%,58% 20%,65% 20%,65% 7%,69% 7%,69% 15%,74% 15%,74% 32%,80% 32%,80% 43%,87% 43%,87% 58%,100% 58%,100% 100%,0 100%)}
+.mountain-back{background:#547e76;left:-5%;opacity:.7}
+.mountain-front{background:#315955;height:42%;left:-8%;transform:scaleX(-1)}
+.wallpaper-caption{position:absolute;right:20px;bottom:18px;font:20px/1.4 "Fusion Pixel";letter-spacing:2px;color:#d3dbc3a6}
+.desktop-icons{position:absolute;top:13px;left:12px;display:flex;flex-direction:column;gap:5px;z-index:1}
+.desktop-icon{border:1px solid transparent;background:transparent;width:75px;height:71px;padding:3px;display:flex;align-items:center;flex-direction:column;gap:4px}
+.desktop-icon img{width:37px;height:37px;object-fit:contain;filter:drop-shadow(2px 3px 0 #1c433055)}
+.desktop-icon span{font:20px/1.4 "Fusion Pixel";color:#f0efda;text-shadow:1px 1px #2d5548;background:#28504733;padding:2px 4px}
+.desktop-icon:hover{background:#d7e2bf26;border:1px dotted #d4dfc1}
+.desktop-note{position:absolute;right:28px;top:26px;background:#e1d8a2;color:#645a46;width:155px;padding:18px 19px 14px;box-shadow:3px 3px 0 #2b584129;transform:rotate(2deg);border-bottom:4px solid #d3c893}
+.desktop-note:before{content:'';position:absolute;top:-7px;left:48px;width:55px;height:15px;background:#b3c2a1b5}
+.desktop-note>img{width:31px;height:31px;float:right;margin-left:8px}
+.desktop-note p{font-size:20px;font-family:"Fusion Pixel";line-height:2;margin:5px 0 10px}
+.desktop-note small{display:block;text-align:right;font:16px/1.4 "Fusion Small"}
+.desktop-owner{position:absolute;bottom:68px;left:122px;letter-spacing:6px;color:#d8e0bd8c;font:24px/1.4 "Fusion Display"}
+.desktop-owner span{display:block;font:16px/1.4 "Fusion Small";letter-spacing:3px;margin-top:9px}
+.app-window{position:absolute;width:82%;height:85%;display:flex;flex-direction:column;border:2px solid #445454;box-shadow:1px 1px 0 #d9decd inset,4px 5px 0 #213b3b50;background:var(--cream);min-width:0}
+.window-title{height:30px;flex:none;display:flex;align-items:center;gap:7px;padding:3px 5px;background:#7d918c;border-bottom:2px solid #4b6260;color:#f7f2db;user-select:none;touch-action:none;cursor:move}
+.active-window .window-title{background:#436a69}
+.window-title>img{width:21px;height:21px;object-fit:contain}
+.window-title b{font:20px/1.4 "Fusion Pixel";letter-spacing:.7px}
+.window-grip{flex:1;background:repeating-linear-gradient(0deg,transparent,transparent 2px,#d8e0c62b 2px,#d8e0c62b 3px);height:12px;margin:0 8px}
+.window-title button{background:#cfdbc5;color:#384c49;border:1px solid #344c49;box-shadow:1px 1px #eff4df inset;width:21px;height:21px;padding:0;font:20px/17px "Fusion Pixel"}
+.window-title button:hover{background:#e8dfbc}
+.window-content{flex:1;min-height:0;overflow:hidden;color:var(--ink);background:var(--cream)}
+.taskbar{position:absolute;bottom:0;left:0;right:0;height:33px;z-index:1000;display:flex;align-items:center;padding:3px 4px;gap:5px;background:#a8b3a5;border-top:2px solid #d8dfcb;box-shadow:0 -1px #394f50;color:#344747}
+.taskbar button{height:25px;background:#bfc8b4;border:1px solid #6f847b;box-shadow:1px 1px #e3e8d2 inset;display:flex;align-items:center;gap:4px;padding:2px 8px;font:16px/1.4 "Fusion Small"}
+.taskbar button img{width:19px;height:19px;object-fit:contain}
+.taskbar .system-button{font-weight:bold;padding-right:10px}
+.taskbar-apps{display:flex;gap:4px;flex:1;min-width:0}
+.taskbar-apps button{min-width:0}
+.taskbar .task-active{background:#829c91;box-shadow:1px 1px #596e69 inset}
+.system-tray{border:1px solid #829488;box-shadow:1px 1px #6d8070 inset;display:flex;align-items:center;height:25px;gap:8px;padding:2px 6px;font:16px/1.4 "Fusion Small"}
+.save-indicator,.save-error{width:4px;height:4px;background:#56816b}
+.save-error{background:#a7554e}
+.tray-battery{width:13px;height:7px;border:1px solid #536955;position:relative;background:linear-gradient(90deg,#647e59 75%,transparent 75%)}
+.tray-battery:after{content:'';position:absolute;right:-3px;top:1px;width:2px;height:3px;background:#536955}
+.program-toolbar{display:flex;align-items:center;gap:12px;height:38px;flex:none;padding:5px 10px;border-bottom:1px solid #b8bda9;background:#e0e3d3;font:16px/1.4 "Fusion Small";overflow:hidden}
+.program-toolbar button,.browser-chrome button{border:1px solid #98a595;background:#eef0df;padding:3px 8px;color:#455954;flex:none}
+.toolbar-end{margin-left:auto;white-space:nowrap;font-size:16px;font-family:"Fusion Small";color:#748379}
+.program-status{height:25px;flex:none;display:flex;align-items:center;justify-content:space-between;border-top:1px solid #c5c7b6;background:#e3e5d5;padding:0 10px;font-size:16px;font-family:"Fusion Small";color:#6f7e72}
+.file-manager,.file-reader,.photos-program,.browser-program{height:100%;display:flex;flex-direction:column}
+.breadcrumbs{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.file-columns{font-size:16px;font-family:"Fusion Small";background:#e9ecdd;display:grid;grid-template-columns:1fr 150px;padding:8px 18px;border-bottom:1px solid #c5c9b6;color:#778575}
+.file-list{flex:1;overflow:auto;padding:6px}
+.file-row{width:100%;display:grid;grid-template-columns:30px 1fr 150px;align-items:center;gap:8px;text-align:left;background:transparent;border:1px solid transparent;padding:7px 10px;color:#344842;font:20px/1.5 "Fusion Pixel"}
+.file-row img{width:24px;height:24px;object-fit:contain}
+.file-row.selected{background:#c9d6c1;border:1px dotted #648372}
+.file-row:hover{background:#dce3cf}
+.file-row time{font-size:16px;font-family:"Fusion Small";color:#7b8373}
+.file-row>span{overflow-wrap:anywhere}
+.document-paper{overflow:auto;padding:30px 34px}
+.document-paper h2{font:24px/1.4 "Fusion Display";margin:12px 0 25px}
+.document-paper p{font-size:20px;font-family:"Fusion Pixel";line-height:1.9}
+.document-paper small{font:16px/1.4 "Fusion Small";color:#7f8b7d}
+.split-program{display:flex;height:100%;min-height:0}
+.program-sidebar{width:174px;flex:none;border-right:1px solid #c2c6b5;background:#e0e4d4;overflow:auto;padding:13px 0}
+.sidebar-caption{font:16px/1.4 "Fusion Small";letter-spacing:1px;color:#8a9180;padding:7px 14px 13px;display:flex;justify-content:space-between}
+.program-sidebar>button{display:flex;align-items:center;gap:7px;width:100%;padding:11px 13px;border:0;background:transparent;text-align:left;color:#687767;font:16px/1.4 "Fusion Small";overflow-wrap:anywhere;line-height:1.3}
+.program-sidebar>button:hover{background:#d3dcc8}
+.program-sidebar>button.chosen{background:#c1d0bc;color:#304b40;box-shadow:3px 0 #648471 inset}
+.note-dot{width:5px;height:6px;background:#b5bba3;flex:none}
+.chosen .note-dot{background:#658a77}
+.note-sheet{padding:27px 32px 15px;overflow:auto;flex:1;min-width:0;background:#f1ecdc}
+.note-sheet>.eyebrow{color:#a39878}
+.note-sheet h2{font:24px/1.4 "Fusion Display";letter-spacing:0;margin:14px 0 10px;overflow-wrap:anywhere}
+.note-sheet>time{font:16px/1.4 "Fusion Small";color:#92967e}
+.note-rule{height:1px;background:#d8d3bd;margin:19px 0 23px}
+.note-sheet>p{font-size:20px;font-family:"Fusion Pixel";line-height:2;color:#4c5148}
+.note-footer{border-top:1px solid #dfdcca;margin-top:30px;padding-top:12px;font-size:16px;font-family:"Fusion Small";color:#9a9f89}
+.contact{display:flex;align-items:center;gap:8px;padding:1px 10px 16px;border-bottom:1px solid #c6cebb;margin-bottom:8px}
+.contact img{width:38px;height:38px;object-fit:cover;border:2px solid #a5b6a0}
+.contact b{font:20px/1.4 "Fusion Pixel"}
+.contact small{display:block;font-size:16px;font-family:"Fusion Small";color:#84917f;white-space:nowrap;margin-top:4px}
+.program-sidebar .chat-selection{display:block;padding:10px 13px;font-family:"Fusion Pixel",monospace;font-size:16px;font-family:"Fusion Small"}
+.chat-selection small{display:block;margin-top:5px;font:16px/1.4 "Fusion Small";opacity:.6}
+.chat-pane{flex:1;display:flex;flex-direction:column;min-width:0}
+.chat-header{height:48px;flex:none;border-bottom:1px solid #c8ccba;padding:12px 18px;display:flex;align-items:center;justify-content:space-between}
+.chat-header b{font:20px/1.4 "Fusion Pixel"}
+.chat-header>span{font-size:16px;font-family:"Fusion Small";color:#8c957f}
+.chat-scroll{overflow:auto;flex:1;min-height:0;padding:15px 19px;background:#e9eadc}
+.date-separator{font-size:16px;font-family:"Fusion Small";color:#939b88;text-align:center;margin:0 0 20px}
+.message{display:flex;gap:9px;align-items:flex-start;margin-bottom:16px}
+.message .avatar{width:30px;height:30px;object-fit:cover;flex:none}
+.message>div{max-width:81%}
+.message-author{display:block;font:16px/1.4 "Fusion Small";color:#8c947f;margin:0 0 5px}
+.message p{font-size:20px;font-family:"Fusion Pixel";line-height:1.7;padding:10px 13px;margin:0;background:#faf5e8;border:1px solid #d6d9c4;box-shadow:1px 2px #ced3bc33}
+.message.outgoing{flex-direction:row-reverse}
+.outgoing .message-author{text-align:right}
+.outgoing p{background:#ceddbe;border-color:#bcccb0}
+.image-message{display:block;background:#f4f0e2;border:1px solid #d0d5bc;padding:4px;max-width:230px}
+.image-message img{width:100%;max-height:135px;display:block;object-fit:contain}
+.chat-compose{font-size:16px;font-family:"Fusion Small";color:#9b9e89;border-top:1px solid #ced1bd;padding:14px 15px;display:flex;justify-content:space-between;gap:12px}
+.chat-compose>span{font:16px/1.4 "Fusion Small";color:#a4aa94}
+.photo-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));align-content:start;gap:17px 15px;padding:22px;overflow:auto;flex:1;background:#e6e4d4}
+.photo-tile{border:0;background:transparent;padding:0;min-width:0;text-align:left;transition:transform .15s}
+.photo-tile:hover{transform:translateY(-2px)}
+.photo-tile img{width:100%;aspect-ratio:1.6;object-fit:cover;background:#dad8c4;border:5px solid #f6f0de;box-shadow:1px 2px 0 #67726355;display:block}
+.photo-tile span{display:block;padding:8px 0 0;font:16px/1.4 "Fusion Small";overflow:hidden;text-overflow:ellipsis;color:#6e7766}
+.photo-viewer{flex:1;min-height:0;overflow:auto;background:#dedfce;padding:16px 20px 0;display:flex;flex-direction:column}
+.photo-stage{position:relative;flex:1;min-height:100px;display:flex;align-items:center;justify-content:center;padding:0 20px}
+.full-photo{max-height:100%;max-width:100%;width:auto;height:auto;object-fit:contain;border:6px solid #f2ecda;box-shadow:2px 3px 0 #8b948169;aspect-ratio:1.6}
+.photo-arrow{position:absolute;top:45%;width:28px;height:34px;border:1px solid #a1af9a;background:#e6ead7e6;color:#536b5b;font:24px/26px "Fusion Display";z-index:2}
+.photo-arrow.previous{left:-12px}
+.photo-arrow.next{right:-12px}
+.photo-metadata{padding:15px 0 9px;flex:none}
+.photo-metadata>div{font:16px/1.4 "Fusion Small";color:#506556;display:flex;gap:10px;flex-wrap:wrap}
+.photo-metadata span{color:#8c9783;font-size:16px;font-family:"Fusion Small";letter-spacing:1px}
+.photo-metadata p{font-size:20px;font-family:"Fusion Pixel";line-height:1.8;color:#727b67;margin:12px 0 0}
+.browser-chrome{height:37px;flex:none;padding:5px 8px;display:flex;gap:5px;border-bottom:1px solid #b0baa5;background:#d6decb}
+.browser-chrome button{width:25px;padding:0;font-size:20px;font-family:"Fusion Pixel"}
+.address-bar{flex:1;border:1px solid #abb7a1;background:#f0f1e4;display:flex;align-items:center;gap:8px;font:16px/1.4 "Fusion Small";color:#627c6b;padding:4px 10px;white-space:nowrap;overflow:hidden}
+.address-dot{width:5px;height:5px;border:1px solid #83987a;flex:none}
+.browser-body{flex:1;min-height:0;overflow:auto;background:#f6f3e7}
+.search-page{padding:46px 38px 20px}
+.search-brand{font:37px/1.4 "Fusion Pixel";letter-spacing:-1.5px;color:#59766a;text-align:center}
+.pixel-star{display:inline-block;font-size:40px;font-family:"Fusion Pixel";color:#b4a06d;vertical-align:middle;margin-right:5px}
+.search-subtitle{display:block;font:16px/1.5 "Fusion Small";letter-spacing:2px;font-family:"Fusion Pixel",monospace;font-size:16px;font-family:"Fusion Small";color:#9b9e87;margin-top:12px}
+.search-form{display:flex;margin-top:25px;border:1px solid #aebba5;background:#fffdf1;box-shadow:2px 3px #d1d8c44d}
+.search-form input{width:100%;min-width:0;border:0;background:transparent;color:#3e5548;padding:11px 12px;outline-offset:-3px;font-size:20px;font-family:"Fusion Pixel"}
+.search-form button{flex:none;border:0;border-left:1px solid #aebba5;background:#638476;color:#fcf7df;font-size:20px;font-family:"Fusion Pixel";padding:0 18px}
+.search-hint{margin-top:16px;color:#a0a38e;text-align:center;font-size:16px;font-family:"Fusion Small"}
+.bookmarks{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:34px;align-items:center}
+.bookmarks>span{width:100%;text-align:center;font:16px/1.4 "Fusion Small";color:#a1a78e;letter-spacing:2px;margin-bottom:6px}
+.bookmarks button{font:16px/1.4 "Fusion Small";border:1px solid #d3d9c4;background:#eaeedd;padding:7px 10px;color:#6a816b}
+.browser-offline{text-align:center;font-size:16px;font-family:"Fusion Small";margin-top:33px;color:#b1b59d}
+.has-results{padding:18px 28px}
+.has-results .search-brand{font-size:24px;font-family:"Fusion Display";text-align:left;letter-spacing:-.7px}
+.has-results .pixel-star{font-size:24px;font-family:"Fusion Display"}
+.has-results .search-subtitle{display:none}
+.has-results .search-form{margin-top:12px}
+.result-count{font-size:16px;font-family:"Fusion Small";color:#9a9e89;margin:16px 0 22px}
+.search-result{margin:0 0 23px}
+.search-result small{display:block;color:#8a987e;font:16px/1.4 "Fusion Small";margin-bottom:6px;overflow-wrap:anywhere}
+.search-result button{padding:0;border:0;background:transparent;color:#4b7166;font-size:20px;font-family:"Fusion Pixel";text-align:left;text-decoration:underline;text-underline-offset:3px}
+.search-result p{font-size:20px;font-family:"Fusion Pixel";line-height:1.8;color:#7a826d;margin:8px 0 0}
+.no-results{padding:20px 0}
+.no-results h3{font-size:20px;font-family:"Fusion Pixel";font-weight:500;line-height:1.8}
+.no-results p{font-size:20px;font-family:"Fusion Pixel";color:#89947d}
+.no-result-line{width:42px;height:1px;background:#ced6c0;margin-top:35px}
+.web-page{padding:22px 33px 30px}
+.web-masthead{font:16px/1.4 "Fusion Small";letter-spacing:2px;border-bottom:2px solid #839584;padding-bottom:12px;margin-bottom:24px;color:#7e8e7a;display:flex;justify-content:space-between}
+.web-masthead span{font-size:16px;font-family:"Fusion Small";letter-spacing:1px}
+.web-page>.eyebrow{font-size:16px;font-family:"Fusion Small";color:#9ba38c}
+.web-page h2{font:24px/1.3 "Fusion Display";color:#3f594d;margin:12px 0 23px}
+.web-image{width:100%;max-height:185px;object-fit:cover;border:5px solid #e2e4d2;margin-bottom:16px}
+.web-prose p{font-size:20px;font-family:"Fusion Pixel";line-height:2;color:#626f5c;margin-bottom:19px}
+.web-prose .route-line{font:20px/2 "Fusion Pixel";background:#e2e8d6;padding:14px 15px;border-left:3px solid #7b9984;color:#456451}
+.web-links{border-top:1px solid #d5dbc7;padding-top:8px}
+.web-links button{display:flex;justify-content:space-between;width:100%;background:transparent;border:0;border-bottom:1px solid #e0e4d0;font-size:20px;font-family:"Fusion Pixel";color:#5f8068;padding:12px 0;text-align:left}
+.web-footer{font-size:16px;font-family:"Fusion Small";color:#a7af96;margin-top:24px}
+.physical-laptop,.physical-ticket{position:absolute;border:0;background:transparent;cursor:default}
+.physical-laptop{left:29%;top:62%;width:30%;height:23%}
+.physical-ticket{left:57%;top:73%;width:12%;height:13%}
+.ticket-view{position:absolute;inset:0;z-index:1500;background:#0c142269;display:grid;place-items:center}
+.paper-ticket{width:410px;max-width:87vw;background:#eee0ba;color:#5c5649;padding:27px 29px 20px;position:relative;box-shadow:3px 6px 0 #111c2b55;transform:rotate(-3deg);background-image:repeating-linear-gradient(0deg,transparent,transparent 3px,#d8c99f33 3px,#d8c99f33 4px);border:1px solid #bca775;font-family:"Fusion Pixel",monospace}
+.ticket-brand{font-size:16px;font-family:"Fusion Small";letter-spacing:3px;border-bottom:1px solid #bbab87;padding-bottom:14px;display:flex;justify-content:space-between}
+.ticket-brand span{font-size:16px;font-family:"Fusion Small";letter-spacing:1px}
+.ticket-route{display:flex;align-items:center;justify-content:space-between;margin:23px 0}
+.ticket-route small{display:block;font-size:16px;font-family:"Fusion Small";letter-spacing:2px;color:#998b68;margin-bottom:6px}
+.ticket-route strong{font-size:24px;font-family:"Fusion Display";letter-spacing:-.7px}
+.ticket-route>span{font-size:24px;font-family:"Fusion Display";color:#a99872}
+.ticket-details{display:flex;justify-content:space-between;font-size:16px;font-family:"Fusion Small";letter-spacing:1px}
+.ticket-details b{font-size:20px;font-family:"Fusion Pixel";margin-left:4px;font-weight:400}
+.ticket-perforation{border-top:2px dashed #c3b38e;margin:20px -29px}
+.ticket-bottom{display:flex;justify-content:space-between;align-items:center}
+.barcode{width:122px;height:27px;background:repeating-linear-gradient(90deg,#746b54 0 1px,transparent 1px 3px,#746b54 3px 6px,transparent 6px 9px,#746b54 9px 11px,transparent 11px 12px)}
+.ticket-bottom>span{font-size:16px;font-family:"Fusion Small";line-height:1.7;color:#95876c;text-align:right}
+.ticket-close{position:absolute;right:-8px;top:-10px;border:1px solid #9d8f70;background:#e1d3ac;width:24px;height:24px;color:#6c604a;font-size:20px;font-family:"Fusion Pixel"}
+.intro-sequence{position:absolute;inset:0;pointer-events:none;display:flex;align-items:center;justify-content:flex-end;flex-direction:column;padding:0 20px 8vh;background:linear-gradient(0deg,#0d1525d9,transparent 55%);z-index:1400;animation:intro-text 1s both}
+.intro-0{background:#10151fe8;animation:opening 4.4s both}
+.intro-sequence p{font-size:20px;font-family:"Fusion Pixel";line-height:2.2;text-align:center;color:#ece0bd;text-shadow:0 2px #0b172c;letter-spacing:1px}
+.intro-sequence button{pointer-events:auto;border:1px solid #c5b99d55;background:#111e2b99;padding:7px 20px;font-size:16px;font-family:"Fusion Small";color:#bdbaa3}
+.intro-sequence button>span{margin-left:15px;color:#8e9e8e}
+.chapter-caption{position:absolute;bottom:9px;left:0;right:0;pointer-events:none;text-align:center;text-shadow:1px 2px #10192c;animation:chapter 6.5s both;z-index:1400}
+.chapter-caption span{font:16px/1.4 "Fusion Small";letter-spacing:1.4px;color:#ccb88c}
+.chapter-caption p{font-size:16px;font-family:"Fusion Small";line-height:1.5;margin:4px 0 0;color:#d1cbb7}
+.modal-backdrop{position:absolute;inset:0;z-index:5000;display:grid;place-items:center;background:#111a2be0;backdrop-filter:blur(3px)}
+.menu-dialog{width:410px;max-width:90vw;max-height:90vh;overflow:auto;padding:32px 37px;background:#252f37;border:1px solid #77745f;box-shadow:5px 5px #101723;color:#c8c8ae;display:flex;flex-direction:column;gap:13px}
+.menu-dialog .eyebrow{color:#909c88;font-size:16px;font-family:"Fusion Small";letter-spacing:2px}
+.menu-dialog h2{font:24px/1.4 "Fusion Display";color:#e1d5b1;margin:8px 0 15px}
+.menu-dialog p{font-size:20px;font-family:"Fusion Pixel";line-height:2;color:#a5ad9d;margin-bottom:7px}
+.menu-dialog label{font-size:20px;font-family:"Fusion Pixel";display:flex;align-items:center;gap:10px;line-height:2.1}
+.menu-dialog input{accent-color:#c3b074}
+.volume-setting{gap:11px}
+.volume-setting input{min-width:0;flex:1}
+.menu-dialog label>span{width:35px;text-align:right;font:16px/1.4 "Fusion Small"}
+.menu-dialog .setting-note{font-size:16px;font-family:"Fusion Small";line-height:1.9;padding-top:18px;margin-top:4px;border-top:1px solid #505948}
+.menu-dialog>button{border:1px solid #5e6b5c;background:transparent;color:#b8c2a8;padding:10px;font-size:20px;font-family:"Fusion Pixel"}
+.menu-dialog>button:hover{background:#3b4b45}
+.menu-dialog>button.primary-button{background:#a4ac8b;color:#283b35;border:1px solid #c6c8a1}
+.menu-dialog>small{font-size:16px;font-family:"Fusion Small";color:#7b897b;margin:6px 0 0}
+.credits>img{width:55px;height:55px;margin-bottom:6px}
+.credits h2{font-size:32px;font-family:"Fusion Pixel"}
+.save-warning{position:absolute;bottom:54px;left:7vw;color:#d7b693;font-size:16px;font-family:"Fusion Small";line-height:1.7}
+.save-warning.in-game{bottom:44px;left:20px;background:#342b29e6;padding:8px 12px;z-index:6000}
+.ending-sequence{position:absolute;inset:0;background:#121824;z-index:1800;overflow:hidden}
+.cinema-bars{position:absolute;inset:0;border-top:6vh solid #090d15;border-bottom:6vh solid #090d15;z-index:10;pointer-events:none}
+.cinema-shot{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;animation:shot-in 1.8s ease both}
+.shot-label{position:absolute;top:11vh;left:8vw;font:16px/1.4 "Fusion Small";letter-spacing:4px;color:#c5cbb3;text-shadow:1px 1px #111e2b}
+.cinema-caption{position:absolute;bottom:8vh;left:10%;right:10%;text-align:center;line-height:2;font-size:20px;font-family:"Fusion Pixel";letter-spacing:1px;text-shadow:0 2px 4px #071323;color:#e5dec5}
+.arrival-ticket{display:flex;flex-direction:column;gap:37px;align-items:center;margin-bottom:8vh}
+.arrival-ticket>.eyebrow{font-size:16px;font-family:"Fusion Small";color:#969f91}
+.step-0{background:radial-gradient(ellipse at 50% 30%,#424441,#111c2a)}
+.morrow-ending.step-0{background:radial-gradient(ellipse at 50% 30%,#354a52,#101a29)}
+.packing-shot{position:relative;width:min(660px,90vw);height:400px;display:grid;place-items:center;perspective:1000px}
+.closing-computer{position:absolute;top:80px;width:310px;height:170px;animation:pack-computer 8s both;transform-origin:50% 100%}
+.closing-lid{position:absolute;inset:0;background:#6c7779;border:4px solid #2d3b48;display:grid;place-items:center;transform-origin:50% 100%;animation:close-lid 4.3s ease both;backface-visibility:visible}
+.closing-lid img{width:65px;height:65px}
+.closing-base{position:absolute;bottom:-12px;left:-8px;right:-8px;height:20px;background:#53616c;border:3px solid #293846}
+.packed-bag{width:100%;max-width:530px;image-rendering:pixelated;opacity:0;animation:show-packed-bag 9s both}
+.zipper-line{position:absolute;top:130px;left:20%;width:0;height:3px;background:#aba088;animation:zip-bag 8s both}
+.platform-shot{position:absolute;inset:6vh 0;overflow:hidden;background:#263044}
+.platform-shot>img{width:100%;height:100%;object-fit:cover;animation:step-onto-platform 11s ease-out both}
+.train-door{position:absolute;top:0;bottom:0;width:50%;background:#626369;border:12px solid #38424d;box-shadow:inset 0 0 0 3px #90927e;animation:open-door 3s .5s both}
+.train-door:after{content:'';position:absolute;top:14%;left:13%;width:74%;height:45%;background:#202e3a;border:10px solid #8a8a7d}
+.door-left{left:0;--door-direction:-1}
+.door-right{right:0;--door-direction:1}
+.passenger{position:absolute;bottom:12%;width:25px;height:74px;background:#534c54;clip-path:polygon(32% 0,65% 0,65% 20%,85% 20%,95% 65%,70% 65%,76% 100%,56% 100%,48% 75%,40% 100%,18% 100%,27% 65%,5% 65%,12% 20%,32% 20%);animation:passenger-walk 9s linear both}
+.passenger-one{left:18%;background:#c0aa7f}
+.passenger-two{left:61%;bottom:18%;height:54px;animation-direction:reverse}
+.dark-bag{width:75vw;max-width:900px;position:relative;filter:brightness(.6);animation:bag-light 10s both}
+.dark-bag>img{width:100%;display:block}
+.impossible-glow{position:absolute;left:30%;top:44%;width:50%;height:30%;background:radial-gradient(ellipse,#719fbd55,transparent 65%);opacity:0;animation:impossible-glow 10s both}
+.final-photo-window{width:min(680px,75vw);border:4px solid #6e7e7c;background:#d5dcca;box-shadow:0 0 120px #638f9f29;color:#354b49;padding:6px 6px 0}
+.final-photo-title{display:flex;align-items:center;gap:6px;background:#426361;color:#dae5ce;font:20px/1.4 "Fusion Pixel";padding:4px 8px;margin-bottom:6px}
+.final-photo-title img{width:20px;height:20px}
+.developing-photo{position:relative;width:100%;aspect-ratio:1.6;background:#263445;overflow:hidden}
+.developing-photo img{width:100%;height:100%;position:absolute;inset:0;image-rendering:pixelated}
+.nora-developing{animation:develop 17s linear both}
+.final-metadata{display:flex;flex-wrap:wrap;gap:7px 30px;align-items:center;font:16px/1.4 "Fusion Small";padding:17px 12px}
+.final-metadata b{width:100%;font-weight:400;margin-bottom:3px}
+.final-metadata span{font-size:16px;font-family:"Fusion Small";color:#5d7366}
+.notice-board{width:83vw;max-width:900px;min-height:380px;background:#5d5147;border:12px solid #938267;box-shadow:0 0 0 4px #302f32;display:flex;gap:20px;padding:25px;align-items:center;animation:board-approach 10s both;transform-origin:75% 50%}
+.small-notice{background:#d4cfb5;color:#6e6d5a;padding:20px 15px;max-width:210px;min-height:180px;transform:rotate(-4deg);border-top:8px solid #b8b69c}
+.small-notice:nth-child(2){transform:rotate(3deg);background:#bac9b3}
+.small-notice b{font-size:20px;font-family:"Fusion Pixel"}
+.small-notice p{font-size:16px;font-family:"Fusion Small";line-height:2;margin-top:20px}
+.notice-board>img{width:40%;max-width:360px;transform:rotate(2deg)}
+.missing-shot{width:100%;height:100%;display:grid;place-items:center;background:radial-gradient(#555c51,#222d31 65%);padding:8vh 0 12vh}
+.missing-poster{width:330px;max-height:75vh;background:#ded2b3;padding:22px 32px;color:#65594b;transform:rotate(-1deg);box-shadow:4px 6px 0 #18242b66;position:relative;filter:sepia(.12)}
+.missing-poster h2{text-align:center;font:700 38px/1 "Fusion Pixel";letter-spacing:5px;margin:0 0 7px}
+.missing-poster h3{text-align:center;font:20px/1.4 "Fusion Pixel";letter-spacing:3px;margin:0 0 15px}
+.missing-poster>img{width:100%;border:4px solid #b6aa8e;filter:sepia(.23)}
+.missing-poster p{font-size:20px;font-family:"Fusion Pixel";line-height:1.8;text-align:center;margin:13px 0 0}
+.poster-tape{position:absolute;top:-8px;width:77px;height:20px;background:#a99f7999;left:37%;transform:rotate(-4deg)}
+.poster-tears{position:absolute;bottom:-5px;left:0;right:0;height:8px;background:repeating-linear-gradient(90deg,#ded2b3 0 22px,transparent 22px 23px)}
+.pull-away{animation:pull-away 10s ease-in-out both}
+.end-title{position:absolute;inset:0;background:#090e17;display:flex;align-items:center;justify-content:center;flex-direction:column;animation:end-fade 4s both}
+.end-title>img{width:42px;height:42px;margin-bottom:25px;opacity:.7}
+.end-title h1{font:700 36px/1.4 "Fusion Display";letter-spacing:8px;margin:0 0 20px;color:#d9cfac}
+.end-title p{font-size:16px;font-family:"Fusion Small";letter-spacing:4px;color:#78877d}
+.ending-actions{display:flex;gap:18px;margin-top:37px}
+.ending-actions button{padding:11px 20px;border:1px solid #677467;background:transparent;color:#b6c2a9;font:20px/1.4 "Fusion Pixel"}
+.end-title>small{font:16px/1.4 "Fusion Small";letter-spacing:3px;color:#5d7069;margin-top:33px}
+.large-text .note-sheet>p,.large-text .document-paper p,.large-text .web-prose p{font-size:20px;font-family:"Fusion Pixel"}
+.large-text .message p{font-size:20px;font-family:"Fusion Pixel"}
+.large-text .photo-metadata p{font-size:20px;font-family:"Fusion Pixel"}
+*{scrollbar-width:thin;scrollbar-color:#a4b39b #e3e7d5}
+::-webkit-scrollbar{width:9px;height:8px}
+::-webkit-scrollbar-track{background:#e3e7d5}
+::-webkit-scrollbar-thumb{background:#a4b39b;border:2px solid #e3e7d5}
+.reduce-motion *,.reduce-motion *:before,.reduce-motion *:after{scroll-behavior:auto!important;transition:none!important}
+.reduce-motion .menu-title h1 i,.reduce-motion .passenger,.reduce-motion .platform-shot>img{animation:none}
+.reduce-motion .computer-position{transition:none}
+.reduce-motion .nora-developing{animation-name:develop-still}
+.reduce-motion .notice-board,.reduce-motion .pull-away{animation:none}
+
+@keyframes cursor{0%,45%{opacity:1}
+46%,64%{opacity:0}
+65%,100%{opacity:1}
+}
+@keyframes chapter{0%,100%{opacity:0}
+14%,78%{opacity:1}
+}
+@keyframes intro-text{from{opacity:0}
+to{opacity:1}
+}
+@keyframes opening{0%{background:#080b12;opacity:1}
+35%{background:#080b12ed}
+100%{background:#10151f55}
+}
+@keyframes shot-in{from{opacity:0}
+to{opacity:1}
+}
+@keyframes close-lid{0%,12%{transform:rotateX(-55deg)}
+60%,100%{transform:rotateX(-88deg)}
+}
+@keyframes pack-computer{0%,48%{opacity:1;transform:translateY(0)}
+75%,100%{opacity:0;transform:translateY(90px) scale(.7)}
+}
+@keyframes show-packed-bag{0%,45%{opacity:0;transform:scale(.88)}
+70%,100%{opacity:1;transform:scale(1)}
+}
+@keyframes zip-bag{0%,70%{width:0;opacity:0}
+80%{opacity:.8;width:54%}
+100%{width:54%;opacity:0}
+}
+@keyframes open-door{to{transform:translateX(calc(var(--door-direction) * 105%))}
+}
+@keyframes step-onto-platform{from{transform:scale(1.03) translateY(-2%)}
+to{transform:scale(1.15) translateY(1%)}
+}
+@keyframes passenger-walk{to{transform:translateX(180px)}
+}
+@keyframes bag-light{0%,40%{filter:brightness(.3)}
+100%{filter:brightness(.8)}
+}
+@keyframes impossible-glow{0%,40%{opacity:0}
+100%{opacity:1}
+}
+@keyframes develop{0%,18%{opacity:0;clip-path:inset(50% 0 0 0)}
+37%{opacity:.2;clip-path:inset(48% 0 0 0)}
+58%{opacity:.42;clip-path:inset(19% 0 0 0)}
+85%,100%{opacity:1;clip-path:inset(0)}
+}
+@keyframes develop-still{0%,25%{opacity:0}
+85%,100%{opacity:1}
+}
+@keyframes board-approach{from{transform:scale(.9)}
+to{transform:scale(1.13)}
+}
+@keyframes pull-away{from{transform:scale(1);opacity:1}
+80%{opacity:1}
+to{transform:scale(.7);opacity:0}
+}
+@keyframes end-fade{from{opacity:0}
+to{opacity:1}
+}
+
+@media(min-width:1450px){.photo-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+.note-sheet>p{font-size:20px;font-family:"Fusion Pixel"}
+.message p{font-size:20px;font-family:"Fusion Pixel"}
+.web-prose p{font-size:20px;font-family:"Fusion Pixel"}
+}
+
+@media(max-width:900px){.main-menu{padding:25px 6vw}
+.menu-options{width:220px}
+.menu-title h1{font-size:78px;font-family:"Fusion Pixel"}
+.menu-title .eyebrow{font-size:16px;font-family:"Fusion Small"}
+.menu-subtitle{font-size:16px;font-family:"Fusion Small";letter-spacing:1px}
+.menu-tagline{font-size:16px;font-family:"Fusion Small";max-width:280px}
+.computer-position{width:93vw;height:88vh}
+.laptop-shell{padding:0 8px}
+.desktop-icons{left:5px;top:8px;gap:0}
+.desktop-icon{width:58px;height:65px}
+.desktop-icon img{width:32px;height:32px}
+.desktop-icon span{font-size:16px;font-family:"Fusion Small"}
+.desktop-note{right:20px;width:135px;font-size:16px;font-family:"Fusion Small"}
+.app-window{width:85%}
+.program-sidebar{width:140px}
+.program-sidebar>button{font-size:16px;font-family:"Fusion Small";padding:11px 10px}
+.note-sheet{padding:23px}
+.note-sheet h2{font-size:24px;font-family:"Fusion Display"}
+.contact{gap:6px}
+.contact img{width:28px;height:28px}
+.contact small{font-size:16px;font-family:"Fusion Small"}
+.taskbar-apps button{padding:2px 6px;font-size:16px;font-family:"Fusion Small"}
+.system-tray{gap:6px}
+.tray-battery{display:none}
+.search-page{padding:35px 25px 15px}
+.has-results{padding:18px 20px}
+.photo-grid{gap:13px;padding:17px}
+.file-columns{grid-template-columns:1fr 100px}
+.file-row{grid-template-columns:25px 1fr 100px}
+.file-row time{font-size:16px;font-family:"Fusion Small"}
+.web-page{padding:20px 24px}
+}
+
+@media(max-height:650px){.menu-title>img{width:35px;height:35px;margin-bottom:5px}
+.menu-title h1{font-size:72px;font-family:"Fusion Display"}
+.menu-title .eyebrow{margin-bottom:12px}
+.menu-subtitle{margin:18px 0}
+.menu-rule{margin:16px 0}
+.menu-options{margin-top:70px}
+.menu-options button{padding:13px 5px}
+.computer-position{height:89vh}
+.desktop-icon{height:59px;gap:1px}
+.desktop-icon img{width:30px;height:30px}
+.bezel-top,.bezel-bottom{height:18px}
+.photo-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:13px}
+.photo-stage{min-height:90px}
+.photo-metadata{padding:10px 0}
+.photo-metadata p{font-size:16px;font-family:"Fusion Small";margin-top:8px}
+.full-photo{max-width:85%}
+.search-page{padding-top:24px}
+.search-brand{font-size:24px;font-family:"Fusion Display"}
+.search-form{margin-top:18px}
+.bookmarks{margin-top:20px}
+.chapter-caption{bottom:2px}
+.chapter-caption p{display:none}
+.missing-poster{width:280px;padding:18px 25px}
+.missing-poster h2{font-size:24px;font-family:"Fusion Display"}
+.missing-poster p{font-size:16px;font-family:"Fusion Small";margin-top:8px}
+.final-photo-window{width:min(540px,65vw)}
+.cinema-caption{font-size:20px;font-family:"Fusion Pixel"}
+.packing-shot{height:300px}
+.closing-computer{top:25px}
+}
+
+@media(max-width:620px){.game{min-height:450px}
+.main-menu{display:block;padding:12vh 8vw 8vh}
+.menu-title{max-width:100%}
+.menu-title>img{width:30px;height:30px;margin:0 0 14px}
+.menu-title h1{font-size:76px;font-family:"Fusion Pixel";line-height:.85}
+.menu-title .eyebrow{font-size:16px;font-family:"Fusion Small";margin-bottom:14px}
+.menu-subtitle{font-size:16px;font-family:"Fusion Small";margin:18px 0 0}
+.menu-tagline,.menu-rule{display:none}
+.menu-options{margin:30px 0 0;width:100%;max-width:320px;display:grid;grid-template-columns:1fr 1fr;gap:5px 18px}
+.menu-options button{font-size:20px;font-family:"Fusion Pixel";padding:13px 0;border-bottom:1px solid #c4b59238}
+.menu-options button span{margin-right:9px}
+.menu-options button i{margin-left:24px;font-size:16px;font-family:"Fusion Small"}
+.menu-bottom{font-size:16px;font-family:"Fusion Small";bottom:24px;letter-spacing:0}
+.menu-bottom>span:last-child{display:none}
+.menu-topline{font-size:16px;font-family:"Fusion Small";top:23px}
+.computer-position{width:97vw;height:86vh;top:48%}
+.laptop-shell{padding:0 4px;border-radius:7px}
+.bezel-top>span:last-child{display:none}
+.bezel-top{height:16px}
+.bezel-bottom{height:18px;font-size:16px;font-family:"Fusion Small"}
+.desktop-icons{left:4px;gap:8px;top:20px}
+.desktop-icon{width:50px;height:61px}
+.desktop-icon span{font-size:16px;font-family:"Fusion Small"}
+.app-window{width:94%;height:86%;left:3%!important;top:7%!important}
+.program-sidebar{width:108px}
+.program-sidebar>button{font-size:16px;font-family:"Fusion Small";padding:11px 8px}
+.sidebar-caption{font-size:16px;font-family:"Fusion Small";padding:7px 8px 12px}
+.note-sheet{padding:20px 17px}
+.note-sheet h2{font-size:20px;font-family:"Fusion Pixel"}
+.note-sheet>p{font-size:20px;font-family:"Fusion Pixel";line-height:1.95}
+.note-sheet>time{font-size:16px;font-family:"Fusion Small"}
+.contact{display:block;padding:0 8px 13px}
+.contact img{float:left;margin-right:6px;width:26px;height:26px}
+.contact small{font-size:16px;font-family:"Fusion Small";margin-top:5px}
+.contact b{font-size:16px;font-family:"Fusion Small"}
+.program-sidebar .chat-selection{font-size:16px;font-family:"Fusion Small";padding:11px 8px}
+.chat-selection small{font-size:16px;font-family:"Fusion Small"}
+.chat-header{padding:10px 12px}
+.chat-header>span{font-size:16px;font-family:"Fusion Small"}
+.chat-scroll{padding:14px 10px}
+.message{gap:6px}
+.message .avatar{width:23px;height:23px}
+.message>div{max-width:84%}
+.message p{font-size:20px;font-family:"Fusion Pixel";padding:8px 10px}
+.chat-compose{font-size:16px;font-family:"Fusion Small";padding:11px 10px}
+.chat-compose>span{display:none}
+.image-message{max-width:180px}
+.taskbar-apps button{padding:2px 4px;min-width:24px}
+.taskbar-apps button>span{display:none}
+.taskbar .system-button{font-size:16px;font-family:"Fusion Small";padding:2px 5px}
+.system-tray{font-size:16px;font-family:"Fusion Small";padding:2px 5px}
+.system-tray .save-indicator{display:none}
+.program-toolbar{padding:5px 8px;font-size:16px;font-family:"Fusion Small";gap:7px}
+.program-status{font-size:16px;font-family:"Fusion Small";padding:0 7px}
+.photo-grid{grid-template-columns:repeat(2,minmax(0,1fr));padding:15px 12px;gap:14px 12px}
+.photo-tile span{font-size:16px;font-family:"Fusion Small"}
+.photo-viewer{padding:14px 12px 0}
+.photo-stage{padding:0 10px}
+.full-photo{max-width:100%;border-width:4px}
+.photo-metadata p{font-size:20px;font-family:"Fusion Pixel"}
+.photo-metadata>div{font-size:16px;font-family:"Fusion Small";gap:6px}
+.search-page{padding:40px 20px 15px}
+.search-brand{font-size:24px;font-family:"Fusion Display"}
+.has-results{padding:15px}
+.search-form input{font-size:20px;font-family:"Fusion Pixel";padding:10px}
+.search-form button{padding:0 12px}
+.web-page{padding:20px}
+.web-masthead{font-size:16px;font-family:"Fusion Small"}
+.web-masthead span{display:none}
+.web-page h2{font-size:24px;font-family:"Fusion Display"}
+.web-prose p{font-size:20px;font-family:"Fusion Pixel"}
+.web-prose .route-line{font-size:16px;font-family:"Fusion Small"}
+.document-paper{padding:24px 20px}
+.document-paper h2{font-size:20px;font-family:"Fusion Pixel"}
+.document-paper p{font-size:20px;font-family:"Fusion Pixel"}
+.file-columns{grid-template-columns:1fr 82px}
+.file-row{grid-template-columns:20px 1fr 82px;gap:6px;padding:9px 4px;font-size:16px;font-family:"Fusion Small"}
+.file-row img{width:20px;height:20px}
+.file-row time{font-size:16px;font-family:"Fusion Small"}
+.menu-dialog{padding:28px}
+.ticket-route strong{font-size:24px;font-family:"Fusion Display"}
+.paper-ticket{width:355px;padding:25px}
+.physical-laptop{left:25%;width:38%}
+.physical-ticket{left:61%;width:16%}
+.final-photo-window{width:92vw}
+.final-metadata{font-size:16px;font-family:"Fusion Small";gap:7px 14px;padding:13px 8px}
+.final-metadata span{font-size:16px;font-family:"Fusion Small"}
+.cinema-caption{font-size:20px;font-family:"Fusion Pixel";left:7%;right:7%;bottom:9vh}
+.notice-board{padding:10px;gap:10px;min-height:290px}
+.small-notice{padding:10px;min-height:140px}
+.small-notice:nth-child(2){display:none}
+.notice-board>img{width:58%}
+.missing-poster{width:300px}
+.end-title h1{font-size:38px;font-family:"Fusion Pixel";letter-spacing:4px}
+}
+
+
+.desktop-note>img{position:absolute;right:12px;bottom:12px;float:none;width:28px;height:28px}
+.desktop-note small{text-align:left}
+.ending-sequence.is-paused *{animation-play-state:paused!important}
+
+
+.physical-laptop{left:calc(50% - max(20.78125vw,36.9444vh));top:calc(50% + max(6.25vw,11.1111vh));width:max(30vw,53.3333vh);height:max(14.0625vw,25vh)}
+.physical-ticket{left:calc(50% + max(7.8125vw,13.8889vh));top:calc(50% + max(13.90625vw,24.7222vh));width:max(9.375vw,16.6667vh);height:max(5.46875vw,9.7222vh)}
+
+
+.file-properties{display:flex;gap:8px 24px;flex-wrap:wrap;flex:none;padding:9px 12px;border-top:1px solid #c5c9b6;background:#e9ecdd;color:#73816c;font:16px/1.6 "Fusion Small"}
+
+/* Reading scale: 8/10/12 px masters displayed at integer multiples. */
+:root{font-family:"Fusion Pixel",monospace;font-size:20px;font-synthesis:none}
+button,input{font-family:inherit}button{line-height:1.4}small,time,.eyebrow{font-family:"Fusion Small";font-size:16px}
+h1,h2,h3,b,strong{font-weight:400}p{line-height:1.7}
+.asset-loading{min-height:100dvh;display:grid;align-content:center;justify-items:center;gap:20px;background:#171e2b;color:#d8c9a7;font:20px/1.6 "Fusion Pixel"}.asset-loading h1{font:48px "Fusion Display"}.asset-loading button{background:#3b4f52;border:2px solid #a7b39b;padding:12px 24px}.loading-pixel{width:16px;height:16px;background:#b7c3a6;box-shadow:16px 0 #6a9291}
+.main-menu{background:linear-gradient(90deg,#101724eb,#10172493 51%,#10172466);padding:44px 7vw}
+.menu-topline,.menu-bottom{font:16px/1.5 "Fusion Small";letter-spacing:2px}.menu-title{max-width:60%}.menu-title>img{width:64px;height:64px;margin-bottom:20px}.menu-title .eyebrow{font:16px/1.5 "Fusion Small";letter-spacing:2px}.menu-title h1{font:120px/.9 "Fusion Display";letter-spacing:0;text-shadow:4px 4px #514b42}.menu-title h1 i{width:20px;height:16px;margin-left:24px}.menu-subtitle{font:16px/1.5 "Fusion Small";letter-spacing:1px;margin:26px 0}.menu-rule{margin:22px 0}.menu-tagline{font:20px/1.8 "Fusion Pixel";letter-spacing:0}.menu-options{width:320px;margin:125px 0 0 30px}.menu-options button{font:24px/1.2 "Fusion Display";padding:17px 8px}.menu-options button span{font:16px "Fusion Small";margin-right:20px}.menu-options button i{font:16px/1.5 "Fusion Small";margin:7px 0 0 48px;letter-spacing:0}
+.computer-position{width:min(1420px,92vw);height:min(930px,91vh);top:48%}.laptop-shell{border-radius:4px;padding:0 12px;border:4px solid #273742;box-shadow:0 0 0 2px #8e9890,7px 12px 0 #101c2788}.bezel-top,.bezel-bottom{height:26px;font:16px "Fusion Small";letter-spacing:2px}.bezel-top>span:last-child{font-size:16px}.bezel-bottom{height:24px}.camera-dot{width:5px;height:4px;border-radius:0}.desktop-screen{border:3px solid #253943}.desktop-wallpaper{bottom:44px}.wallpaper-caption{font:20px "Fusion Pixel";letter-spacing:0}.desktop-icons{left:12px;top:16px;gap:9px}.desktop-icon{width:100px;height:86px;padding:4px;gap:6px}.desktop-icon img{width:48px;height:48px;filter:none}.desktop-icon span{font:20px/1.2 "Fusion Pixel";padding:2px 5px}.desktop-note{width:220px;padding:22px 24px;right:35px;top:35px;transform:none;box-shadow:4px 4px #25423844}.desktop-note p{font:20px/1.8 "Fusion Pixel"}.desktop-note small{font:16px "Fusion Small"}.desktop-note>img{width:40px;height:40px}.desktop-owner{bottom:85px;left:145px;font:24px "Fusion Display"}.desktop-owner span{font:16px "Fusion Small";letter-spacing:2px}
+.app-window{width:90%;height:88%;border:2px solid #3b5555;box-shadow:4px 5px #233a3e55}.window-title{height:40px;gap:9px;padding:4px 6px}.window-title>img{width:28px;height:28px}.window-title b{font:24px "Fusion Display";letter-spacing:0}.window-title button{width:30px;height:30px;font:24px/1 "Fusion Display"}.window-grip{height:16px}.taskbar{height:44px;padding:4px;gap:6px}.taskbar button{height:32px;font:16px "Fusion Small";padding:2px 10px;gap:6px}.taskbar button img{width:24px;height:24px}.system-tray{height:32px;font:16px "Fusion Small";gap:10px}.tray-battery{width:18px;height:10px}.program-toolbar{height:45px;padding:7px 12px;font:16px "Fusion Small";gap:12px}.program-toolbar button{min-height:30px;padding:3px 9px}.toolbar-end{font:16px "Fusion Small"}.program-status{height:auto;min-height:30px;padding:5px 12px;font:16px/1.25 "Fusion Small";gap:12px}.program-status span{font:16px/1.25 "Fusion Small"}
+.file-columns{font:16px "Fusion Small";padding:9px 20px;grid-template-columns:1fr 210px}.file-row{grid-template-columns:36px 1fr 210px;padding:9px 12px;font:20px/1.4 "Fusion Pixel";gap:12px}.file-row img{width:32px;height:32px}.file-row time{font:16px "Fusion Small"}.file-properties{font:16px/1.5 "Fusion Small";padding:10px 14px}.document-paper{padding:30px 36px}.document-paper h2{font:24px/1.4 "Fusion Display";overflow-wrap:anywhere}.document-paper p{font:20px/1.7 "Fusion Pixel"}.document-paper small{font:16px "Fusion Small"}
+.program-sidebar{width:224px;padding:12px 0}.sidebar-caption{font:16px "Fusion Small";padding:10px 16px 16px;letter-spacing:0}.program-sidebar>button{font:20px/1.4 "Fusion Pixel";padding:14px 16px;gap:10px;color:#54664f;overflow-wrap:break-word}.note-dot{width:6px;height:8px}.note-sheet{padding:28px 34px 22px}.note-sheet h2{font:24px/1.5 "Fusion Display";letter-spacing:0;margin:12px 0}.note-sheet>time{font:16px "Fusion Small";color:#727863}.note-rule{margin:20px 0}.note-sheet>p{font:20px/1.8 "Fusion Pixel";color:#455044}.note-footer{font:16px "Fusion Small";color:#7b836c}
+.contact{gap:10px;padding:2px 12px 18px}.contact img{width:48px;height:54px;object-fit:cover}.contact b{font:24px "Fusion Display"}.contact small{font:16px/1.3 "Fusion Small";white-space:normal}.program-sidebar .chat-selection{font:20px/1.3 "Fusion Pixel";padding:12px 16px}.chat-selection small{font:16px/1.3 "Fusion Small";opacity:.8;margin-top:7px}.chat-header{height:50px;padding:10px 20px;gap:10px}.chat-header b{font:24px "Fusion Display"}.chat-header>span{font:16px "Fusion Small"}.chat-scroll{padding:20px 24px}.date-separator{font:16px "Fusion Small";color:#798470}.message{gap:10px;margin-bottom:22px}.message .avatar{width:44px;height:50px}.message>div{max-width:82%}.message-author{font:16px/1.2 "Fusion Small";margin-bottom:7px;color:#77836b}.message p{font:20px/1.65 "Fusion Pixel";padding:12px 15px}.image-message{max-width:280px;padding:5px}.image-message img{max-height:none;aspect-ratio:1.6;object-fit:contain}.message-emoji{width:24px;height:24px;vertical-align:-5px;image-rendering:auto;display:inline-block;margin:0 2px}.chat-compose{font:16px/1.4 "Fusion Small";padding:12px 15px;flex:none;color:#7b846d}.chat-compose>span{font:16px "Fusion Small"}
+.photo-grid{grid-template-columns:repeat(3,minmax(0,1fr));padding:24px;gap:24px 20px}.photo-tile span{font:16px/1.4 "Fusion Small";padding-top:10px;overflow-wrap:anywhere;white-space:normal;overflow:visible}.photo-tile img{border:6px solid #f6efdc}.photo-viewer{padding:16px 28px 0;display:grid;grid-template-rows:minmax(110px,1fr) auto}.photo-stage{min-height:110px;padding:0 18px;height:100%}.full-photo{max-width:100%;max-height:100%;border:5px solid #f2ecda;box-sizing:border-box}.photo-arrow{font:32px/1 "Fusion Small";height:42px;width:30px}.photo-metadata{padding:13px 0 10px}.photo-metadata>div{font:16px/1.4 "Fusion Small";gap:7px 12px}.photo-metadata span{font:16px "Fusion Small";letter-spacing:0;color:#758367}.photo-metadata p{font:20px/1.5 "Fusion Pixel";margin:10px 0 0;color:#63735c}
+.browser-chrome{height:44px;padding:6px 9px;gap:6px}.browser-chrome button{width:31px;font:20px "Fusion Pixel"}.address-bar{font:16px "Fusion Small";padding:5px 9px}.search-page{padding:34px 38px 24px}.search-brand{font:48px/1.2 "Fusion Display";letter-spacing:0}.pixel-star{font:40px "Fusion Pixel"}.search-subtitle{font:20px "Fusion Pixel";margin-top:14px;letter-spacing:0}.search-form{margin-top:26px;border:2px solid #a8b59d}.search-form input{font:20px/1.5 "Fusion Pixel";padding:10px 13px}.search-form button{font:20px "Fusion Pixel";padding:0 20px}.search-hint{font:16px "Fusion Small";color:#818b75}.bookmarks{margin-top:28px;gap:10px}.bookmarks>span{font:16px "Fusion Small";letter-spacing:1px}.bookmarks button{font:20px "Fusion Pixel";padding:7px 12px}.browser-offline{font:16px "Fusion Small";color:#818b75;margin-top:28px}.has-results{padding:18px 30px}.has-results .search-brand{font:24px "Fusion Display";letter-spacing:0}.result-count{font:16px "Fusion Small";margin:18px 0;color:#7e896f}.search-result{margin-bottom:26px}.search-result small{font:16px/1.4 "Fusion Small";color:#748469}.search-result button{font:24px/1.4 "Fusion Display"}.search-result p{font:20px/1.6 "Fusion Pixel";margin-top:8px;color:#61715b}.no-results h3{font:20px/1.7 "Fusion Pixel"}.no-results p{font:20px/1.6 "Fusion Pixel"}.web-page{padding:24px 35px}.web-masthead,.web-masthead span{font:16px/1.4 "Fusion Small";letter-spacing:0}.web-page>.eyebrow{font:16px "Fusion Small"}.web-page h2{font:24px/1.5 "Fusion Display";margin:14px 0 22px}.web-image{max-height:240px}.web-prose p{font:20px/1.8 "Fusion Pixel";color:#53664e}.web-prose .route-line{font:20px/1.6 "Fusion Pixel";padding:14px;overflow-wrap:anywhere}.web-links button{font:20px/1.5 "Fusion Pixel";gap:10px;padding:14px 0}.web-footer{font:16px "Fusion Small";color:#7d8b6f}
+.opening-stage-0 .computer-position,.opening-stage-1 .computer-position,.opening-stage-2 .computer-position{visibility:hidden;opacity:0}.opening-stage-3 .computer-position{animation:approach-computer 4.4s ease-in-out both}.intro-sequence{padding:0 28px 5vh;background:linear-gradient(0deg,#0b1427ed,transparent 48%);justify-content:flex-end}.intro-0{animation:intro-text 1s both}.intro-sequence p{font:24px/1.6 "Fusion Display";letter-spacing:0;max-width:1000px;margin-bottom:16px}.intro-sequence button{font:20px "Fusion Pixel";padding:7px 22px}.chapter-caption{bottom:7vh;left:50%;right:auto;transform:translateX(-50%);width:max-content;max-width:90vw;padding:12px 24px;background:#172434ed;border:2px solid #667476;text-align:left;box-shadow:4px 4px #0d1829;z-index:1400}.chapter-caption span{font:16px/1.4 "Fusion Small";letter-spacing:1px}.chapter-caption p{display:block;font:24px/1.6 "Fusion Display";margin:7px 0 0;color:#ede3c6}.discovery-thought{position:absolute;bottom:5vh;left:50%;transform:translateX(-50%);z-index:2200;pointer-events:none;background:#172434f5;color:#e8dfbf;border:2px solid #8c998d;box-shadow:4px 4px #121d2a;padding:14px 24px;max-width:90vw;width:max-content;animation:intro-text .35s both}.discovery-thought span{font:16px "Fusion Small";color:#acbba6}.discovery-thought p{font:24px/1.5 "Fusion Display";margin:5px 0 0}
+.physical-laptop{left:calc(50% - max(21.09375vw,37.5vh));top:calc(50% + max(3.75vw,6.6667vh));width:max(31.875vw,56.6667vh);height:max(17.1875vw,30.5556vh)}.physical-ticket{left:calc(50% + max(10.9375vw,19.4444vh));top:calc(50% + max(14.375vw,25.5556vh));width:max(10vw,17.7778vh);height:max(5.3125vw,9.4444vh)}
+.paper-ticket{width:510px;transform:rotate(-2deg);font-family:"Fusion Small";padding:28px 30px}.ticket-brand{font:20px "Fusion Pixel";letter-spacing:1px;gap:15px}.ticket-brand span{font:16px "Fusion Small";letter-spacing:0}.ticket-route small{font:16px "Fusion Small";letter-spacing:1px}.ticket-route strong{font:30px "Fusion Pixel";letter-spacing:0}.ticket-details{font:16px "Fusion Small";letter-spacing:0;gap:12px}.ticket-details b{font:20px "Fusion Pixel"}.ticket-bottom>span{font:16px/1.3 "Fusion Small"}.ticket-close{width:32px;height:32px;font:24px "Fusion Display"}
+.menu-dialog{width:520px;max-height:90vh;padding:30px 36px;gap:16px;border:2px solid #7d806c}.menu-dialog .eyebrow{font:16px/1.5 "Fusion Small";letter-spacing:1px}.menu-dialog h2{font:24px/1.5 "Fusion Display";margin:8px 0}.menu-dialog p,.menu-dialog label{font:20px/1.7 "Fusion Pixel"}.menu-dialog label>span,.menu-dialog .setting-note,.menu-dialog>small{font:16px/1.5 "Fusion Small"}.menu-dialog>button{font:20px/1.4 "Fusion Pixel";padding:10px}.menu-dialog input[type=checkbox]{width:18px;height:18px;flex:none}.credits h2{font:36px "Fusion Display"}.license-details{font:16px/1.5 "Fusion Small"}.license-details pre{white-space:pre-wrap;overflow-wrap:anywhere;font:16px/1.3 "Fusion Small"}.save-warning{font:16px "Fusion Small"}
+.shot-label{font:16px "Fusion Small";letter-spacing:2px}.cinema-caption{font:24px/1.65 "Fusion Display";letter-spacing:0;background:#101c2bba;padding:10px 20px;bottom:7vh;max-width:1000px;margin:0 auto}.arrival-ticket>.eyebrow{font:16px "Fusion Small"}.final-photo-window{width:min(850px,75vw)}.final-photo-title{font:24px "Fusion Display";padding:6px 10px;gap:8px}.final-photo-title img{width:28px;height:28px}.final-metadata{font:20px "Fusion Pixel";padding:14px;gap:10px 25px}.final-metadata span{font:16px "Fusion Small"}.small-notice b{font:24px "Fusion Display"}.small-notice p{font:20px/1.6 "Fusion Pixel"}.small-notice{max-width:250px}.notice-board{max-width:1100px;gap:24px}.missing-poster{width:430px;padding:24px 32px;max-height:none}.missing-poster h2{font:48px/1 "Fusion Display";letter-spacing:3px}.missing-poster h3{font:24px "Fusion Display"}.missing-poster p{font:20px/1.5 "Fusion Pixel";margin-top:12px}.end-title h1{font:72px/1.2 "Fusion Display";letter-spacing:4px}.end-title p{font:20px "Fusion Pixel";letter-spacing:2px}.ending-actions button{font:24px "Fusion Display";padding:12px 22px}.end-title>small{font:16px "Fusion Small"}.large-text .note-sheet>p,.large-text .document-paper p,.large-text .web-prose p,.large-text .message p,.large-text .photo-metadata p{font:24px/1.65 "Fusion Display"}
+@keyframes approach-computer{0%{opacity:0;transform:translate(-50%,20%) scale(.2)}25%{opacity:0}55%{opacity:1}100%{opacity:1;transform:translate(-50%,-50%) scale(1)}}
+@media(min-width:1800px){.photo-grid{grid-template-columns:repeat(4,minmax(0,1fr))}.menu-title h1{font-size:144px}.menu-options{width:380px}.menu-options button{padding:24px 8px}.menu-title{margin-left:4vw}.main-menu{padding-right:12vw}}
+@media(max-height:780px) and (min-width:901px){.menu-title>img{width:48px;height:48px;margin-bottom:12px}.menu-title h1{font-size:96px}.menu-title .eyebrow{margin-bottom:16px}.menu-subtitle{margin:20px 0}.menu-rule{margin:16px 0}.menu-options{margin-top:100px}.menu-options button{padding:14px 8px}.desktop-icons{gap:4px;top:8px}.desktop-icon{height:77px}.desktop-note{top:24px}.missing-poster{width:360px;padding:20px 25px}.missing-poster h2{font-size:36px}.missing-poster p{font:20px/1.4 "Fusion Pixel"}.final-photo-window{width:min(680px,70vw)}.photo-metadata p{font:20px/1.4 "Fusion Pixel"}.search-page{padding-top:24px}.search-brand{font-size:36px}.bookmarks{margin-top:22px}.browser-offline{margin-top:22px}}
+@media(max-width:900px){.computer-position{width:97vw;height:94vh}.program-sidebar{width:190px}.program-sidebar>button,.program-sidebar .chat-selection{padding:12px;font-size:20px}.app-window{width:94%;left:3%!important}.note-sheet{padding:24px}.chat-scroll{padding:16px}.taskbar-apps button>span{display:none}.menu-title h1{font-size:84px}.menu-options{width:270px}.menu-tagline{max-width:350px}.menu-topline{letter-spacing:0}.menu-title .eyebrow{font-size:16px}.desktop-note{width:210px}.chapter-caption{bottom:5vh}.file-row{grid-template-columns:30px 1fr 160px}.file-columns{grid-template-columns:1fr 160px}.final-photo-window{width:min(680px,86vw)}}
+@media(max-width:620px){.main-menu{padding:10vh 7vw 6vh}.menu-title h1{font-size:72px}.menu-title>img{width:40px;height:40px;margin-bottom:12px}.menu-title .eyebrow{font:16px "Fusion Small"}.menu-subtitle{font:16px "Fusion Small"}.menu-options{width:100%;margin:24px 0 0;gap:6px 18px}.menu-options button{font:20px "Fusion Pixel";padding:13px 0}.menu-options button span{display:none}.menu-options button i{font:16px "Fusion Small";margin:8px 0 0}.menu-bottom,.menu-topline{font:16px "Fusion Small"}.menu-topline span:last-child{display:none}.program-sidebar{width:136px}.program-sidebar>button,.program-sidebar .chat-selection{font:16px/1.5 "Fusion Small";padding:12px 9px}.contact{padding:0 10px 12px}.contact img{width:35px;height:40px}.contact b{font:20px "Fusion Pixel"}.contact small{font:16px/1.3 "Fusion Small";clear:both}.note-sheet{padding:18px}.note-sheet>p{font:20px/1.7 "Fusion Pixel"}.note-sheet h2{font:24px "Fusion Display"}.chat-header>span{display:none}.chat-compose{font:16px/1.3 "Fusion Small"}.message .avatar{width:28px;height:32px}.message{gap:6px}.message>div{max-width:85%}.message p{font:20px/1.5 "Fusion Pixel";padding:9px}.chat-scroll{padding:12px 8px}.program-status span{display:none}.photo-grid{grid-template-columns:repeat(2,minmax(0,1fr));padding:14px;gap:18px 12px}.photo-viewer{padding:12px}.photo-metadata p{font:20px/1.5 "Fusion Pixel"}.photo-stage{padding:0 18px}.file-row{grid-template-columns:28px 1fr;font:20px "Fusion Pixel"}.file-row time,.file-columns>span:last-child{display:none}.file-columns{display:block}.file-properties{font:16px "Fusion Small"}.program-toolbar{font:16px "Fusion Small"}.program-toolbar>span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.toolbar-end{display:none}.web-page,.search-page{padding:20px}.search-brand{font-size:36px}.search-form input{font:20px "Fusion Pixel"}.search-form button{padding:0 12px}.web-masthead span{display:none}.paper-ticket{padding:22px;width:380px}.ticket-route strong{font:24px "Fusion Display"}.ticket-brand{font:16px "Fusion Small"}.ticket-bottom>span{font:16px "Fusion Small"}.barcode{width:80px}.intro-sequence p,.chapter-caption p,.discovery-thought p,.cinema-caption{font:24px/1.5 "Fusion Display"}.chapter-caption,.discovery-thought{padding:12px 15px;width:90vw}.missing-poster{width:330px;padding:20px 24px}.missing-poster h2{font:36px "Fusion Display"}.missing-poster p{font:20px/1.4 "Fusion Pixel"}.final-photo-window{width:94vw}.end-title h1{font:40px "Fusion Pixel";letter-spacing:1px}.ending-actions button{font:20px "Fusion Pixel"}.small-notice:nth-child(2){display:none}}
+.reduce-motion .opening-stage-3 .computer-position,.reduce-motion.opening-stage-3 .computer-position{animation:none;opacity:1;transform:translate(-50%,-50%)}
+/* Fit the enlarged photo to both available axes without cropping its frame. */
+.photo-stage{container-type:size}
+.full-photo{width:min(100cqw,160cqh);height:min(100cqh,62.5cqw);max-width:100%;max-height:100%;object-fit:contain}
+
+.full-photo.portrait-photo{width:min(100cqw,88.263cqh);height:min(100cqh,113.298cqw);aspect-ratio:376/426}
+.final-photo-window{width:min(440px,70vw);max-height:80vh}.developing-photo{aspect-ratio:376/426;max-height:60vh}.developing-photo img{object-fit:contain}
+
+.reveal-outline{animation:reveal-outline 17s linear both}.reveal-clothes{animation:reveal-clothes 17s linear both}.reveal-face{animation:reveal-face 17s linear both}
+@keyframes reveal-outline{0%,10%{opacity:0}30%{opacity:.65}60%{opacity:.45}80%,100%{opacity:0}}
+@keyframes reveal-clothes{0%,22%{opacity:0}50%{opacity:.35}82%,100%{opacity:1}}
+@keyframes reveal-face{0%,38%{opacity:0}65%{opacity:.4}90%,100%{opacity:1}}
+.reduce-motion .reveal-outline{display:none}.reduce-motion .reveal-face,.reduce-motion .reveal-clothes{animation:develop-still 17s linear both}
+.morrow-approach{position:absolute;inset:0;z-index:1800;pointer-events:none;background:#18212a;animation:morrow-approach 6s linear both}
+.morrow-approach-ticket{position:absolute;inset:0;display:grid;place-items:center;animation:morrow-ticket-appear 6s linear both}
+.morrow-approach[style*="paused"] .morrow-approach-ticket{animation-play-state:paused}
+@keyframes morrow-approach{0%,35%{opacity:0}48%,100%{opacity:1}}
+@keyframes morrow-ticket-appear{0%,48%{opacity:0}62%,100%{opacity:1}}
+/* Fusion Small supplies the ≧ glyph missing from the 10px Chinese face. */
+.note-sheet>p{font-family:"Fusion Pixel","Fusion Small",monospace}
+.large-text .note-sheet>p{font-family:"Fusion Display","Fusion Small",monospace}
+
+.looking-up .physical-laptop{left:calc(50% + max(8.5vw,15.11vh));top:calc(50% + max(3.3vw,5.87vh));width:max(35vw,62.22vh);height:max(21vw,37.33vh)}
+.looking-up .physical-ticket{left:50%;top:calc(50% + max(16vw,28.44vh));width:max(9vw,16vh);height:max(4.3vw,7.64vh)}
+
+/* The two cameras share a seat layout; crossfade rather than replace the scene in one frame. */
+.train-world{position:absolute;inset:0;transition:opacity .35s ease,transform .35s ease}
+.train-world-forward{opacity:1}.train-world-left{opacity:0;pointer-events:none;transform:translateX(-2%) scale(1.02)}
+.looking-up .train-world-forward{opacity:1;pointer-events:none}.looking-up .train-world-left{opacity:1;transform:translateX(0) scale(1)}
+.reduce-motion .train-world{transition:none}
+.computer-position::after{content:"";position:absolute;left:6%;right:6%;bottom:-31px;height:32px;pointer-events:none;clip-path:polygon(4% 0,96% 0,100% 100%,0 100%);background:repeating-linear-gradient(0deg,transparent 0 5px,#344950 5px 8px),repeating-linear-gradient(90deg,#83978e 0 12px,#344950 12px 16px);border-bottom:6px solid #2b3b45;box-shadow:inset 0 5px #a0afa1}
+.looking-up .computer-position::after{opacity:0}
+
+.computer-position::before{content:"";position:absolute;left:44%;width:12%;bottom:-29px;height:11px;z-index:2;pointer-events:none;background:#839991;border:1px solid #374a50;transform:perspective(80px) rotateX(22deg)}
+.looking-up .computer-position::before{opacity:0}
+/* Opening controls only; the menu and the two first-person views remain unchanged. */
+.intro-actions{display:flex;gap:12px;align-items:center;pointer-events:auto}
+.intro-sequence .skip-intro{color:#d2cbb7;background:#14202bd9}
+.intro-sequence .skip-intro:focus-visible{outline:2px solid #efdaa7;outline-offset:3px}
+/* Keep the complete lake-and-train artwork visible at non-16:9 window sizes. */
+.train-canvas[data-scene="menu"]{object-fit:contain;background:#101724}

@@ -1,0 +1,13 @@
+{
+  "selection": "A / LIGHT",
+  "approved_date": "2026-11-01",
+  "files": {
+    "nora.png": "431a7a2f62e920ff0f37e77ec31eb30219f34ba6870dfa39c5442ce5c69d547d",
+    "final.png": "734d9d9e7d294435b49647e87684d414d435ad7ea064829b76836ba4e6071553",
+    "reveal-outline.png": "9d6cf66f5f06d869f22db45bb02ec6c0a0f8651dff669040d583ea54f84c0e22",
+    "reveal-clothes.png": "c06b7560a94011d3f74c0e2295c8bc65917836561b5eb4b2d1f9dccfecd53789",
+    "reveal-face.png": "22f0623c1a72891ea7b00bae0d2cfe7bd0fc55aed5c5936babe4ef4131b1d9a3"
+  },
+  "alpha_sha256": "ea1c28cb3d9381979316b3f1c78a73bda6ad371fc36f2ad0391d930b6d5a42e9",
+  "base_sha256": "3ecf623117ebbc7d83979461fe1764160f61e79bd548744974c5374fdb36e7aa"
+}
